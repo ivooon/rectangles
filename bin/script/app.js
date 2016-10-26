@@ -2,6 +2,22 @@ function helloWorld() {
     console.log("Hello world");
     var game = new Game(1, 1, null, 1, [new Player(1, 1, 1, 1, 1, "")]);
 }
+var GameConstants = (function () {
+    function GameConstants() {
+    }
+    return GameConstants;
+}());
+var GameContext = (function () {
+    function GameContext() {
+    }
+    GameContext.entityManager = new EntityManager();
+    return GameContext;
+}());
+var EntityManager = (function () {
+    function EntityManager() {
+    }
+    return EntityManager;
+}());
 var Block = (function () {
     function Block(x, y, width, height, player) {
         if (player === void 0) { player = null; }
@@ -56,5 +72,10 @@ var World = (function () {
     function World() {
     }
     return World;
+}());
+var RectCalculation = (function () {
+    function RectCalculation() {
+    }
+    return RectCalculation;
 }());
 //# sourceMappingURL=app.js.map
