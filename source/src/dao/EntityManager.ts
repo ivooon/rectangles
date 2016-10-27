@@ -1,4 +1,4 @@
 class EntityManager {
-	public game : Game;
-	public gameWorld : World;
+	public game: Game;
+	public gameWorld: World;
 }

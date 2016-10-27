@@ -1,4 +1,4 @@
-class World { 
-	public currentPlayer : Player;
-	
+class World {
+	public currentPlayer: Player;
+
 }

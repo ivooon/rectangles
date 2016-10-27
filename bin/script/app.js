@@ -2,6 +2,27 @@ function helloWorld() {
     console.log("Hello world");
     var game = new Game(1, 1, null, 1, [new Player(1, 1, 1, 1, 1, "")]);
 }
+var GameStatusDto = (function () {
+    function GameStatusDto(gameStatusEnum) {
+        this.gameStatusEnum = gameStatusEnum;
+    }
+    return GameStatusDto;
+}());
+var GameStatusEnum;
+(function (GameStatusEnum) {
+    GameStatusEnum[GameStatusEnum["IN_QUEUE"] = 0] = "IN_QUEUE";
+    GameStatusEnum[GameStatusEnum["STARTED"] = 1] = "STARTED";
+    GameStatusEnum[GameStatusEnum["FINISHED"] = 2] = "FINISHED";
+})(GameStatusEnum || (GameStatusEnum = {}));
+var RectDto = (function () {
+    function RectDto(x, y, width, height) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+    }
+    return RectDto;
+}());
 var GameConstants = (function () {
     function GameConstants() {
     }
@@ -73,9 +94,34 @@ var World = (function () {
     }
     return World;
 }());
-var RectCalculation = (function () {
-    function RectCalculation() {
+var InteractionFacadeImpl = (function () {
+    function InteractionFacadeImpl() {
     }
-    return RectCalculation;
+    InteractionFacadeImpl.prototype.getCost = function (rect) {
+        return 0;
+    };
+    InteractionFacadeImpl.prototype.putRect = function (rect) {
+        return false;
+    };
+    InteractionFacadeImpl.prototype.getMap = function () {
+        return null;
+    };
+    InteractionFacadeImpl.prototype.addPlayerUpdateListener = function (playerUpdateListener) {
+    };
+    InteractionFacadeImpl.prototype.addMapUpdateListener = function (mapUpdateListener) {
+    };
+    InteractionFacadeImpl.prototype.addGameStatusListener = function (gameStatusListener) {
+    };
+    InteractionFacadeImpl.prototype.login = function (username, password) {
+        return false;
+    };
+    InteractionFacadeImpl.prototype.startGame = function () {
+    };
+    return InteractionFacadeImpl;
+}());
+var RectCalculationService = (function () {
+    function RectCalculationService() {
+    }
+    return RectCalculationService;
 }());
 //# sourceMappingURL=app.js.map
