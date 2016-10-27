@@ -1,5 +1,6 @@
 class GameStatusDto {
 
-	constructor(public gameStatusEnum: GameStatusEnum) { }
+	constructor();
+	constructor(public gameStatusEnum?: GameStatusEnum) { }
 
 }

@@ -37,6 +37,28 @@ var GameContext = (function () {
 var EntityManager = (function () {
     function EntityManager() {
     }
+    EntityManager.prototype.getCurrentPlayerBlocks = function () {
+        return this.getPlayerBlocks(this.gameWorld.currentPlayer.id);
+    };
+    EntityManager.prototype.getPlayerBlocks = function (playerId) {
+        return this.getBlocks(playerId, true);
+    };
+    EntityManager.prototype.getOtherPlayersBlocks = function (playerId) {
+        return this.getBlocks(playerId, false);
+    };
+    EntityManager.prototype.getBlocks = function (playerId, equal) {
+        var result = new Array();
+        for (var _i = 0, _a = this.game.players; _i < _a.length; _i++) {
+            var gamePlayer = _a[_i];
+            if (equal == (playerId == gamePlayer.id)) {
+                for (var _b = 0, _c = gamePlayer.blocks; _b < _c.length; _b++) {
+                    var block = _c[_b];
+                    result.push(block);
+                }
+            }
+        }
+        return result;
+    };
     return EntityManager;
 }());
 var Block = (function () {
