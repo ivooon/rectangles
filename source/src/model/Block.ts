@@ -1,4 +1,5 @@
-class Block {
+import {Player} from "./Player";
+export class Block {
 
 	public x: number;
 	public y: number;

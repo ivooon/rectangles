@@ -1,4 +1,4 @@
-class RectDto {
+export class RectDto {
 
 	constructor(public x: number,
 		public y: number,

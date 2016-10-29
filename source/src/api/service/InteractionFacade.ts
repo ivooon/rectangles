@@ -1,4 +1,9 @@
-interface InteractionFacade {
+import {RectDto} from "../dto/RectDto";
+import {Block} from "../../model/Block";
+import {MapUpdateListener} from "../listener/MapUpdateListener";
+import {PlayerUpdateListener} from "../listener/PlayerUpdateListener";
+import {GameStatusListener} from "../listener/GameStatusListener";
+export interface InteractionFacade {
 
 	getCost(rect: RectDto): number;
 	putRect(rect: RectDto): boolean;

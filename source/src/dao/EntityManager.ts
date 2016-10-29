@@ -1,4 +1,7 @@
-class EntityManager {
+import {Game} from "../model/Game";
+import {World} from "../model/World";
+import {Block} from "../model/Block";
+export class EntityManager {
 	public game: Game;
 	public gameWorld: World;
 

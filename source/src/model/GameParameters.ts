@@ -1,4 +1,4 @@
-class GameParameters {
+export class GameParameters {
 	public incomeScale: number;
 	public costScale: number;
 

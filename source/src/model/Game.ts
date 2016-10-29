@@ -1,4 +1,6 @@
-class Game {
+import {Player} from "./Player";
+import {GameParameters} from "./GameParameters";
+export class Game {
 	public startTime: number;
 	public duration: number;
 	public gameParameters: GameParameters;

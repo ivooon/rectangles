@@ -1,3 +1,3 @@
-class GameConstants {
+export class GameConstants {
 
 }

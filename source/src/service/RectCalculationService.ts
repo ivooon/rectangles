@@ -1,3 +1,3 @@
-class RectCalculationService{
+export class RectCalculationService{
 	
 }
