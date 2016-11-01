@@ -12,6 +12,7 @@ export interface InteractionFacade {
 	addMapUpdateListener(mapUpdateListener: MapUpdateListener): void;
 	addGameStatusListener(gameStatusListener: GameStatusListener): void;
 	login(username: string, password: string): boolean;
+	register(username: string, password: string): boolean;
 	startGame(): void;
 
 }

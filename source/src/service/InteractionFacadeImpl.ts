@@ -23,6 +23,9 @@ export class InteractionFacadeImpl implements InteractionFacade {
 	addGameStatusListener(gameStatusListener: GameStatusListener): void {
 
 	}
+	register(username: string, password: string): boolean {
+		return false;
+	}
 	login(username: string, password: string): boolean {
 		return false;
 	}

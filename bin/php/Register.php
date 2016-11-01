@@ -1,6 +1,5 @@
 <?php
-    include 'DatabaseConnector.php';
-
+require_once 'dao/DatabaseConnector.php';
     $result;
 
     $username = 'test';//$_POST["username"];
@@ -13,29 +12,29 @@
 
     try{
 
-        $sql = "SELECT * FROM USER WHERE USER_NAME = ?";
-        $stmt = $pdo-> prepare($sql);
+        $sql = "SELECT COUNT(*) as number_of_users FROM USER WHERE USER_NAME = ?";
+        $stmt = $pdo->prepare($sql);
         $stmt->execute(array(
                 $username
             )
         );
-        if($stmt->rowCount() == 0){
+        if($stmt->fetch()['number_of_users'] > 0){
             $result = ['status' => 'FAIL'];
             http_response_code(404);
         } else {
-            $user = $stmt->fetch();
-            $salt = $user['SALT'];
-            $encryptedPassword = $user["PASSWORD"];
+            $salt = rand();
+            $encryptedPassword = md5($password.$salt);
+            $sql = "INSERT INTO USER (USER_NAME, PASSWORD, SALT) VALUES (?, ?, ?)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute(array(
+                    $username,
+                    $encryptedPassword,
+                    $salt
+                )
+            );
 
-            if(md5($password.$salt) === $encryptedPassword){
-                session_start();
-                $_SESSION['user_id'] = $user["ID"];
-                $result = ['status' => 'SUCCESS'];
-                http_response_code(200);
-            } else {
-                $result = ['status' => 'FAIL'];
-                http_response_code(404);
-            }
+            $result = ['status' => 'SUCCESS'];
+            http_response_code(200);
         }
         $pdo->commit();
 
