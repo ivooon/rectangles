@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Rectangles</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  	<app-root>Loading...</app-root>
+
+  	<canvas id="canvas" height="500" width="500"></canvas>
+
+	<script>
+		var canvas = document.getElementById('canvas'),
+			ctx = canvas.getContext('2d');
+
+			ctx.beginPath();
+			ctx.arc(100,100,50,0*Math.PI,2*Math.PI);
+			ctx.strokeStyle='black';
+			ctx.lineWidth = 3;
+			ctx.stroke();
+		
+	</script>
+</body>
+</html>
