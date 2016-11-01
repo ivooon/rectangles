@@ -1,28 +1,21 @@
 <!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Rectangles</title>
-  <base href="/">
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  	<app-root>Loading...</app-root>
 
-  	<canvas id="canvas" height="500" width="500"></canvas>
+<html style="
+    width: 100%;
+    height: 100%;
+    position: relative;">
+	<head>
+	  <meta charset="utf-8">
+	  <title>Rectangles</title>
+	  <base href="/">
 
-	<script>
-		var canvas = document.getElementById('canvas'),
-			ctx = canvas.getContext('2d');
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="icon" type="image/x-icon" href="favicon.ico">
+	</head>
 
-			ctx.beginPath();
-			ctx.arc(100,100,50,0*Math.PI,2*Math.PI);
-			ctx.strokeStyle='black';
-			ctx.lineWidth = 3;
-			ctx.stroke();
-
-	</script>
-</body>
+	<body style="
+	    width: 100%;
+	    height: 100%;">
+	  	<app-root>Loading...</app-root>
+	</body>
 </html>

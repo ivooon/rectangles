@@ -1,0 +1,5 @@
+{
+  "globalDependencies": {
+    "paper": "github:sqwk/paper.d.ts/paper.d.ts#0c45e2c25d3190fbedfcee998074356e58a392a9"
+  }
+}
