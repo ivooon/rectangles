@@ -2,23 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88cae367-3ec8-4f15-ad88-f7f0727c44be" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/php/dao/BlockDao.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/php/dao/GameDao.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/php/dao/GameParametersDao.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/php/dao/PlayerDao.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/php/dto/BlockDto.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/php/dto/GameDto.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/php/dto/GameParametersDto.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/php/dto/PlayerDto.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/php/DatabaseConnector.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/php/Login.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/php/Register.php" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/php/CreateBlock.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/php/GameStatusHook.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/php/GameUpdateHook.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/php/GetGame.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/php/service/GameService.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/php/service/GameStatusService.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/php/service/GameUpdateService.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/php/service/GeometricService.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/script/app.js" afterPath="$PROJECT_DIR$/bin/script/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/script/app.js.map" afterPath="$PROJECT_DIR$/bin/script/app.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/src/api/service/InteractionFacade.ts" afterPath="$PROJECT_DIR$/source/src/api/service/InteractionFacade.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/src/service/InteractionFacadeImpl.ts" afterPath="$PROJECT_DIR$/source/src/service/InteractionFacadeImpl.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/php/Login.php" afterPath="$PROJECT_DIR$/bin/php/Login.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/php/Register.php" afterPath="$PROJECT_DIR$/bin/php/Register.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/php/StartGame.php" afterPath="$PROJECT_DIR$/bin/php/StartGame.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/php/dao/BlockDao.php" afterPath="$PROJECT_DIR$/bin/php/dao/BlockDao.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/php/dao/DatabaseConnector.php" afterPath="$PROJECT_DIR$/bin/php/dao/DatabaseConnector.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/php/dao/GameDao.php" afterPath="$PROJECT_DIR$/bin/php/dao/GameDao.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/php/dao/GameParametersDao.php" afterPath="$PROJECT_DIR$/bin/php/dao/GameParametersDao.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/php/dao/PlayerDao.php" afterPath="$PROJECT_DIR$/bin/php/dao/PlayerDao.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/php/dto/BlockDto.php" afterPath="$PROJECT_DIR$/bin/php/dto/BlockDto.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/php/dto/GameDto.php" afterPath="$PROJECT_DIR$/bin/php/dto/GameDto.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/php/dto/GameParametersDto.php" afterPath="$PROJECT_DIR$/bin/php/dto/GameParametersDto.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/php/dto/PlayerDto.php" afterPath="$PROJECT_DIR$/bin/php/dto/PlayerDto.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sql/database.sql" afterPath="$PROJECT_DIR$/sql/database.sql" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/bin/php/LoggedUserService.php" afterPath="$PROJECT_DIR$/bin/php/service/LoggedUserService.php" />
     </list>
     <ignored path="rectangles.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -53,51 +59,99 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="BlockDto.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bin/php/dto/BlockDto.php">
+      <file leaf-file-name="GeometricService.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bin/php/service/GeometricService.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="36" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
+            <state relative-caret-position="330">
+              <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+              <folding>
+                <marker date="1478013082847" expanded="true" signature="1044:1151" ph="INSERT INTO RECT_BLOCK... " />
+                <marker date="1478013082847" expanded="true" signature="1491:1526" ph="DELETE FROM " />
+                <marker date="1478013082847" expanded="true" signature="1497:1514" ph="INSERT INTO RECT_BLOCK... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameUpdateService.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bin/php/service/GameUpdateService.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="22" column="35" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="35" />
+              <folding>
+                <marker date="1478013119569" expanded="true" signature="836:887" ph="UPDATE PLAYE... " />
+                <marker date="1478013119569" expanded="true" signature="1162:1206" ph="UPDATE GAME " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameStatusService.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bin/php/service/GameStatusService.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="290">
+              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameService.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/bin/php/service/GameService.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CreateBlock.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bin/php/CreateBlock.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="34" column="39" selection-start-line="34" selection-start-column="39" selection-end-line="34" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="LoggedUserService.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bin/php/LoggedUserService.php">
+        <entry file="file://$PROJECT_DIR$/bin/php/service/LoggedUserService.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="44" selection-start-line="5" selection-start-column="44" selection-end-line="5" selection-end-column="44" />
+            <state relative-caret-position="90">
+              <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Register.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bin/php/Register.php">
+      <file leaf-file-name="GameStatusHook.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bin/php/GameStatusHook.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="12" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
-              <folding>
-                <marker date="1477997159609" expanded="true" signature="315:379" ph="SELECT COUNT... USER" />
-                <marker date="1477997159609" expanded="true" signature="752:813" ph="INSERT INTO USER... " />
-              </folding>
+            <state relative-caret-position="-90">
+              <caret line="21" column="11" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="11" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StartGame.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bin/php/StartGame.php">
+      <file leaf-file-name="GameUpdateHook.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bin/php/GameUpdateHook.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="17" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="17" />
-              <folding>
-                <marker date="1477997289660" expanded="true" signature="1087:1135" ph="INSERT INTO GAME... " />
-                <marker date="1477997289660" expanded="true" signature="1414:1546" ph="INSERT INTO PLAYER... " />
-                <marker date="1477997289660" expanded="true" signature="2092:2224" ph="INSERT INTO PLAYER... " />
-                <marker date="1477997289660" expanded="true" signature="2716:2776" ph="UPDATE GAME " />
-                <marker date="1477997289660" expanded="true" signature="2722:2763" ph="INSERT INTO PLAYER... " />
-              </folding>
+            <state relative-caret-position="300">
+              <caret line="19" column="42" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GetGame.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bin/php/GetGame.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="600">
+              <caret line="32" column="1" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -105,71 +159,10 @@
       <file leaf-file-name="Login.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bin/php/Login.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="1" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="1" />
+            <state relative-caret-position="933">
+              <caret line="39" column="8" selection-start-line="39" selection-start-column="8" selection-end-line="47" selection-end-column="0" />
               <folding>
-                <marker date="1477997155507" expanded="true" signature="316:354" ph="SELECT * FRO... USER" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BlockDao.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bin/php/dao/BlockDao.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="28" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
-              <folding>
-                <marker date="1477997319381" expanded="true" signature="131:175" ph="SELECT * FRO... RECT_BLOCK" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DatabaseConnector.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bin/php/dao/DatabaseConnector.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PlayerDao.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bin/php/dao/PlayerDao.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
-              <folding>
-                <marker date="1477995515054" expanded="true" signature="130:175" ph="SELECT * FRO... PLAYER" />
-                <marker date="1477995515054" expanded="true" signature="130:176" ph="SELECT * FRO... GAME" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameDao.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/bin/php/dao/GameDao.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="12" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
-              <folding>
-                <marker date="1477997147540" expanded="true" signature="126:157" ph="SELECT * FRO... GAME" />
-                <marker date="1477997147540" expanded="true" signature="746:1299" ph="SELECT GAME.... GAME" />
-                <marker date="1477997147540" expanded="true" signature="1926:2485" ph="SELECT GAME.... GAME" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameParametersDao.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bin/php/dao/GameParametersDao.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="12" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
-              <folding>
-                <marker date="1477997147573" expanded="true" signature="147:201" ph="SELECT * FRO... GAME_PARAMETERS" />
+                <marker date="1478013119440" expanded="true" signature="283:321" ph="SELECT * FRO... USER" />
               </folding>
             </state>
           </provider>
@@ -195,10 +188,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/source/src/model/GameParameters.ts" />
-        <option value="$PROJECT_DIR$/source/src/model/Block.ts" />
-        <option value="$PROJECT_DIR$/source/src/api/dto/GameStatusEnum.ts" />
-        <option value="$PROJECT_DIR$/source/src/api/dto/RectDto.ts" />
         <option value="$PROJECT_DIR$/source/src/config/GameConstants.ts" />
         <option value="$PROJECT_DIR$/source/src/service/RectCalculationService.ts" />
         <option value="$PROJECT_DIR$/source/src/model/World.ts" />
@@ -226,21 +215,30 @@
         <option value="$PROJECT_DIR$/php/GameDao.php" />
         <option value="$PROJECT_DIR$/php/StartGame.php" />
         <option value="$PROJECT_DIR$/bin/php/PlayerDao.php" />
-        <option value="$PROJECT_DIR$/sql/database.sql" />
-        <option value="$PROJECT_DIR$/bin/php/dto/GameDto.php" />
-        <option value="$PROJECT_DIR$/bin/php/dto/PlayerDto.php" />
         <option value="$PROJECT_DIR$/bin/php/dto/GameParametersDto.php" />
         <option value="$PROJECT_DIR$/bin/php/GameParametersDao.php" />
         <option value="$PROJECT_DIR$/bin/php/GameDao.php" />
         <option value="$PROJECT_DIR$/bin/php/LoggedUserService.php" />
         <option value="$PROJECT_DIR$/bin/php/dto/BlockDto.php" />
-        <option value="$PROJECT_DIR$/bin/php/dao/PlayerDao.php" />
-        <option value="$PROJECT_DIR$/bin/php/dao/GameDao.php" />
         <option value="$PROJECT_DIR$/bin/php/dao/GameParametersDao.php" />
         <option value="$PROJECT_DIR$/bin/php/Login.php" />
         <option value="$PROJECT_DIR$/bin/php/Register.php" />
-        <option value="$PROJECT_DIR$/bin/php/StartGame.php" />
         <option value="$PROJECT_DIR$/bin/php/dao/BlockDao.php" />
+        <option value="$PROJECT_DIR$/bin/php/dao/GameDao.php" />
+        <option value="$PROJECT_DIR$/bin/php/GameUpdateHook.php" />
+        <option value="$PROJECT_DIR$/bin/php/service/PlayerUpdateService.php" />
+        <option value="$PROJECT_DIR$/bin/php/service/GameStatusService.php" />
+        <option value="$PROJECT_DIR$/bin/php/GameStatusHook.php" />
+        <option value="$PROJECT_DIR$/bin/php/dao/PlayerDao.php" />
+        <option value="$PROJECT_DIR$/bin/php/GetGame.php" />
+        <option value="$PROJECT_DIR$/bin/php/CreateBlock.php" />
+        <option value="$PROJECT_DIR$/bin/php/service/GameUpdateService.php" />
+        <option value="$PROJECT_DIR$/bin/php/service/GeometricService.php" />
+        <option value="$PROJECT_DIR$/sql/database.sql" />
+        <option value="$PROJECT_DIR$/bin/php/dto/PlayerDto.php" />
+        <option value="$PROJECT_DIR$/bin/php/dto/GameDto.php" />
+        <option value="$PROJECT_DIR$/bin/php/service/GameService.php" />
+        <option value="$PROJECT_DIR$/bin/php/StartGame.php" />
       </list>
     </option>
   </component>
@@ -255,8 +253,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP" />
   <component name="ProjectFrameBounds">
-    <option name="width" value="1140" />
-    <option name="height" value="1080" />
+    <option name="x" value="-7" />
+    <option name="width" value="1548" />
+    <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -342,7 +341,77 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="source" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rectangles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rectangles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="source" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="api" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rectangles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rectangles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="source" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="api" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rectangles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rectangles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="bin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="script" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -361,6 +430,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="php" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rectangles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rectangles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="php" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="service" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -408,6 +499,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rectangles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rectangles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -422,16 +527,17 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="G:\git\IwonaProject\rectangles\bin\php\service" />
       <recent name="G:\git\IwonaProject\rectangles\bin\php\dao" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="G:\git\IwonaProject\rectangles\bin\php\dao" />
       <recent name="G:\git\IwonaProject\rectangles\bin\php" />
+      <recent name="G:\git\IwonaProject\rectangles\bin\php\dao" />
       <recent name="G:\git\IwonaProject\rectangles\php" />
     </key>
   </component>
@@ -898,6 +1004,9 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="88cae367-3ec8-4f15-ad88-f7f0727c44be" name="Default" comment="" />
@@ -908,16 +1017,16 @@
       <workItem from="1477755405351" duration="6369000" />
       <workItem from="1477810849251" duration="1912000" />
       <workItem from="1477812780428" duration="16388000" />
-      <workItem from="1477987755089" duration="9519000" />
+      <workItem from="1477987755089" duration="25846000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34188000" />
+    <option name="totallyTimeSpent" value="50515000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1140" height="1080" extended-state="0" />
-    <editor active="false" />
+    <frame x="-7" y="0" width="1548" height="1047" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -931,8 +1040,9 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26868328" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19712794" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32977587" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -944,7 +1054,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="PHP-CGI Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -969,67 +1078,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/source/src/context/GameContext.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="66" selection-start-line="2" selection-start-column="66" selection-end-line="2" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/src/config/GameConstants.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="7" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/src/api/listener/MapUpdateListener.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="35" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/src/api/listener/GameStatusListener.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="48" selection-start-line="3" selection-start-column="48" selection-end-line="3" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/src/api/dto/RectDto.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="7" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/src/api/dto/GameStatusEnum.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="7" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/script/test.js" />
-    <entry file="file://$PROJECT_DIR$/source/src/test.ts" />
-    <entry file="file://$PROJECT_DIR$/source/src/Initializator.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
-          <folding>
-            <element signature="e#43#77#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/src/api/dto/GameStatusDto.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bin/script/Initializator.js" />
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
@@ -1072,13 +1120,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="11" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/src/api/service/InteractionFacade.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -1136,50 +1177,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sql/database.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="935">
-          <caret line="55" column="11" selection-start-line="55" selection-start-column="11" selection-end-line="56" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/php/dto/GameParametersDto.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_PLUGINS_DIR$/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/date.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="314">
           <caret line="794" column="9" selection-start-line="794" selection-start-column="9" selection-end-line="794" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/php/dto/PlayerDto.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/php/dto/GameDto.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="13" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/php/dao/DatabaseConnector.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
           <folding />
         </state>
       </provider>
@@ -1189,92 +1190,231 @@
         <state relative-caret-position="17">
           <caret line="1" column="12" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
           <folding>
-            <marker date="1477997147573" expanded="true" signature="147:201" ph="SELECT * FRO... GAME_PARAMETERS" />
+            <marker date="1478013119273" expanded="true" signature="153:207" ph="SELECT * FRO... GAME_PARAMETERS" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_PLUGINS_DIR$/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/standard_0.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="118" column="9" selection-start-line="118" selection-start-column="9" selection-end-line="118" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_PLUGINS_DIR$/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/standard_4.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="455" column="9" selection-start-line="455" selection-start-column="9" selection-end-line="455" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/php/dto/GameParametersDto.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/src/api/service/InteractionFacade.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="9" column="12" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bin/php/dto/BlockDto.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
+        <state relative-caret-position="360">
           <caret line="12" column="36" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/php/LoggedUserService.php">
+    <entry file="file://$PROJECT_DIR$/bin/php/dao/DatabaseConnector.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="44" selection-start-line="5" selection-start-column="44" selection-end-line="5" selection-end-column="44" />
+        <state relative-caret-position="30">
+          <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/php/Login.php">
+    <entry file="file://$PROJECT_DIR$/bin/php/dao/BlockDao.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="1" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="1" />
+        <state relative-caret-position="120">
+          <caret line="7" column="41" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
           <folding>
-            <marker date="1477997155507" expanded="true" signature="316:354" ph="SELECT * FRO... USER" />
+            <marker date="1478013119597" expanded="true" signature="137:181" ph="SELECT * FRO... RECT_BLOCK" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/php/Register.php">
+    <entry file="file://$PROJECT_DIR$/sql/database.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="12" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
+        <state relative-caret-position="-120">
+          <caret line="32" column="12" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
           <folding>
-            <marker date="1477997159609" expanded="true" signature="315:379" ph="SELECT COUNT... USER" />
-            <marker date="1477997159609" expanded="true" signature="752:813" ph="INSERT INTO USER... " />
+            <marker date="1478013244419" expanded="true" signature="597:887" ph="CREATE TABLE... PLAYER" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bin/php/dao/PlayerDao.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+        <state relative-caret-position="-120">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
-            <marker date="1477995515054" expanded="true" signature="130:175" ph="SELECT * FRO... PLAYER" />
-            <marker date="1477995515054" expanded="true" signature="130:176" ph="SELECT * FRO... GAME" />
+            <marker date="1478013119627" expanded="true" signature="155:201" ph="SELECT * FRO... PLAYER" />
+            <marker date="1478013119627" expanded="true" signature="155:224" ph="SELECT ID FR... PLAYER" />
+            <marker date="1478013119627" expanded="true" signature="519:564" ph="SELECT * FRO... PLAYER" />
+            <marker date="1478013119627" expanded="true" signature="519:565" ph="SELECT * FRO... GAME" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/php/dto/PlayerDto.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="13" column="45" selection-start-line="13" selection-start-column="45" selection-end-line="13" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/php/dto/GameDto.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/php/dao/GameDao.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="53" column="21" selection-start-line="53" selection-start-column="21" selection-end-line="53" selection-end-column="21" />
+          <folding>
+            <marker date="1478013119147" expanded="true" signature="127:158" ph="SELECT * FRO... GAME" />
+            <marker date="1478013119147" expanded="true" signature="751:1304" ph="SELECT GAME.... GAME" />
+            <marker date="1478013119147" expanded="true" signature="1935:2494" ph="SELECT GAME.... GAME" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bin/php/StartGame.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="17" />
+        <state relative-caret-position="-1920">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding>
-            <marker date="1477997289660" expanded="true" signature="1087:1135" ph="INSERT INTO GAME... " />
-            <marker date="1477997289660" expanded="true" signature="1414:1546" ph="INSERT INTO PLAYER... " />
-            <marker date="1477997289660" expanded="true" signature="2092:2224" ph="INSERT INTO PLAYER... " />
-            <marker date="1477997289660" expanded="true" signature="2716:2776" ph="UPDATE GAME " />
-            <marker date="1477997289660" expanded="true" signature="2722:2763" ph="INSERT INTO PLAYER... " />
+            <marker date="1478013707434" expanded="true" signature="1008:1056" ph="INSERT INTO GAME... " />
+            <marker date="1478013707434" expanded="true" signature="1303:1435" ph="INSERT INTO PLAYER... " />
+            <marker date="1478013707434" expanded="true" signature="1923:2055" ph="INSERT INTO PLAYER... " />
+            <marker date="1478013707434" expanded="true" signature="2501:2561" ph="UPDATE GAME " />
+            <marker date="1478013707434" expanded="true" signature="2507:2548" ph="INSERT INTO PLAYER... " />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/php/dao/BlockDao.php">
+    <entry file="file://$PROJECT_DIR$/bin/php/Register.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="28" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
+        <state relative-caret-position="540">
+          <caret line="33" column="10" selection-start-line="26" selection-start-column="8" selection-end-line="33" selection-end-column="10" />
           <folding>
-            <marker date="1477997319381" expanded="true" signature="131:175" ph="SELECT * FRO... RECT_BLOCK" />
+            <marker date="1478013119208" expanded="true" signature="282:346" ph="SELECT COUNT... USER" />
+            <marker date="1478013119208" expanded="true" signature="675:736" ph="INSERT INTO USER... " />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/php/dao/GameDao.php">
+    <entry file="file://$PROJECT_DIR$/bin/php/Login.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="12" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
+        <state relative-caret-position="933">
+          <caret line="39" column="8" selection-start-line="39" selection-start-column="8" selection-end-line="47" selection-end-column="0" />
           <folding>
-            <marker date="1477997147540" expanded="true" signature="126:157" ph="SELECT * FRO... GAME" />
-            <marker date="1477997147540" expanded="true" signature="746:1299" ph="SELECT GAME.... GAME" />
-            <marker date="1477997147540" expanded="true" signature="1926:2485" ph="SELECT GAME.... GAME" />
+            <marker date="1478013119440" expanded="true" signature="283:321" ph="SELECT * FRO... USER" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/php/GetGame.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="32" column="1" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/php/GameUpdateHook.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="19" column="42" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/php/GameStatusHook.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-90">
+          <caret line="21" column="11" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/php/CreateBlock.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="34" column="39" selection-start-line="34" selection-start-column="39" selection-end-line="34" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/php/service/LoggedUserService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/php/service/GeometricService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+          <folding>
+            <marker date="1478013082847" expanded="true" signature="1044:1151" ph="INSERT INTO RECT_BLOCK... " />
+            <marker date="1478013082847" expanded="true" signature="1491:1526" ph="DELETE FROM " />
+            <marker date="1478013082847" expanded="true" signature="1497:1514" ph="INSERT INTO RECT_BLOCK... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/php/service/GameUpdateService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="22" column="35" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="35" />
+          <folding>
+            <marker date="1478013119569" expanded="true" signature="836:887" ph="UPDATE PLAYE... " />
+            <marker date="1478013119569" expanded="true" signature="1162:1206" ph="UPDATE GAME " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/php/service/GameStatusService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/php/service/GameService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -1,5 +1,6 @@
 <?php
 require_once "./dto/GameDto.php";
+
 class GameDao
 {
     public function findGameById($pdo, $gameId)
@@ -10,15 +11,16 @@ class GameDao
                 $gameId
             )
         );
-        return $stmt -> rowCount() == 0 ? null :$stmt->fetch();
+        return $stmt->rowCount() == 0 ? null : $stmt->fetch();
     }
 
-    public function findGameByIdAsDto($pdo, $gameId){
+    public function findGameByIdAsDto($pdo, $gameId)
+    {
         $result = null;
         $fetchResult = $this->findGameById($pdo, $gameId);
-        if($fetchResult != null){
+        if ($fetchResult != null) {
             $result = new GameDto();
-            $result -> from($fetchResult);
+            $result->from($fetchResult);
         }
         return $result;
     }
@@ -40,15 +42,16 @@ class GameDao
                 $now
             )
         );
-        return $stmt -> rowCount() == 0 ? null :$stmt->fetch();
+        return $stmt->rowCount() == 0 ? null : $stmt->fetch();
     }
 
-    public function findPlayerActiveGameAsDto($pdo, $loggedUserId){
+    public function findPlayerActiveGameAsDto($pdo, $loggedUserId)
+    {
         $result = null;
         $fetchResult = $this->findPlayerActiveGame($pdo, $loggedUserId);
-        if($fetchResult != null){
+        if ($fetchResult != null) {
             $result = new GameDto();
-            $result -> from($fetchResult);
+            $result->from($fetchResult);
         }
         return $result;
     }
@@ -69,15 +72,16 @@ class GameDao
                 $now
             )
         );
-        return $stmt -> rowCount() == 0 ? null : $stmt->fetch();
+        return $stmt->rowCount() == 0 ? null : $stmt->fetch();
     }
 
-    public function findAvailableGameAsDto($pdo){
+    public function findAvailableGameAsDto($pdo)
+    {
         $result = null;
         $fetchResult = $this->findAvailableGame($pdo);
-        if($fetchResult != null){
+        if ($fetchResult != null) {
             $result = new GameDto();
-            $result -> from($fetchResult);
+            $result->from($fetchResult);
         }
         return $result;
     }
