@@ -1,24 +1,56 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'angular2-cookie/core';
 
-import {Game} from '../models/Game';
-import {Player} from '../models/Player';
+import { Game } from '../models/Game';
+import { Player } from '../models/Player';
 declare var paper:any; 
 
 
 @Component({
   selector: 'initializator',
-  templateUrl: 'initializator.component.html'
+  templateUrl: 'initializator.component.html',
+  providers: [CookieService]
 })
 
 
 export class InitializatorComponent {
-	constructor() { 
-		
+	isAuth = false;
+	model: any = {};
+
+	constructor(private _cookieService:CookieService) {}
+
+	ngOnInit() {
+		let user = localStorage.getItem('currentUser');
+		if(user) {
+			this.isAuth = true;
+			//TODO renew session
+		}
+	}
+
+	authenticatePlayer() {
+		//TODO login/register
+		// this.authenticationService.login(this.model.nick, this.model.password)
+  //           .then(
+  //               data => {
+                    localStorage.setItem('currentUser',  'costamostam');
+                    this.isAuth = true;
+                    this.model = {};
+  //               }
+  //           )
+  //           .catch(
+  //               err => {
+  //                   this.loading = false;
+  //                   this.alertService.error(err);
+  //               }
+  //           )
+	}
+
+	logout(){
+		localStorage.removeItem('currentUser');
+		this.isAuth = false;
 	}
 
     helloWorld():void {
-
-        console.log('Hello world');
 
         let game : Game = new Game(1, 1, null, 1, [new Player(1, 1, 1, 1, 1, '')]);
 
