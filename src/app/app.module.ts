@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { InitializatorComponent } from './components/index';
+import { InteractionFacadeImpl } from './services/InteractionFacadeImpl';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { InitializatorComponent } from './components/index';
     FormsModule,
     HttpModule
   ],
-  providers: [],
-  bootstrap: [AppComponent,InitializatorComponent]
+  providers: [InteractionFacadeImpl],
+  bootstrap: [AppComponent, InitializatorComponent]
 })
 export class AppModule { }

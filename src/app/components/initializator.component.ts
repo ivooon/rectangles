@@ -3,8 +3,10 @@ import { CookieService } from 'angular2-cookie/core';
 
 import { Game } from '../models/Game';
 import { Player } from '../models/Player';
-declare var paper:any; 
 
+import {InteractionFacadeImpl} from "../services/InteractionFacadeImpl";
+
+declare var paper:any; 
 
 @Component({
   selector: 'initializator',
@@ -15,9 +17,10 @@ declare var paper:any;
 
 export class InitializatorComponent {
 	isAuth = false;
-	model: any = {};
+	login: any = {};
+	register: any = {};
 
-	constructor(private _cookieService:CookieService) {}
+	constructor(private _cookieService:CookieService, private _InteractionFacadeImpl:InteractionFacadeImpl) {}
 
 	ngOnInit() {
 		let user = localStorage.getItem('currentUser');
@@ -27,22 +30,34 @@ export class InitializatorComponent {
 		}
 	}
 
-	authenticatePlayer() {
-		//TODO login/register
-		// this.authenticationService.login(this.model.nick, this.model.password)
-  //           .then(
-  //               data => {
+	loginFn():void {
+		this._InteractionFacadeImpl.login(this.login.nick, this.login.password)
+            .then(
+                data => {
+                	console.log(data)
                     localStorage.setItem('currentUser',  'costamostam');
                     this.isAuth = true;
-                    this.model = {};
-  //               }
-  //           )
-  //           .catch(
-  //               err => {
-  //                   this.loading = false;
-  //                   this.alertService.error(err);
-  //               }
-  //           )
+                    this.login = {};
+                }
+            )
+            .catch(
+                err => {}
+            )
+	}
+
+	registerFn():void {
+		this._InteractionFacadeImpl.register(this.register.nick, this.register.password)
+            .then(
+                data => {
+                	console.log(data)
+                    localStorage.setItem('currentUser',  'costamostam');
+                    this.isAuth = true;
+                    this.register = {};
+                }
+            )
+            .catch(
+                err => {}
+            )
 	}
 
 	logout(){
