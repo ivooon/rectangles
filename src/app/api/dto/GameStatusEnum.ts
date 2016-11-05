@@ -1,3 +1,3 @@
 export enum GameStatusEnum {
-	IN_QUEUE, STARTED, FINISHED
+  PENDING, STARTED, FINISHED
 }

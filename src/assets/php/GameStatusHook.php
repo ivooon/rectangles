@@ -5,10 +5,10 @@ require_once "dao/GameParametersDao.php";
 require_once "./dao/GameDao.php";
 require_once "service/GameStatusService.php";
 
-
+error_reporting(0);
 $loggedUserId = LoggedUserService::getLoggedUserId();
 if ($loggedUserId != null) {
-    ini_set('max_execution_time', 300);
+    set_time_limit ( 3 );
     $gameDao = new GameDao();
     $gameStatusService = new GameStatusService();
     $databaseConnector = new DataBaseConnector();

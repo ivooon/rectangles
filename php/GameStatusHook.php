@@ -8,7 +8,7 @@ require_once "service/GameStatusService.php";
 
 $loggedUserId = LoggedUserService::getLoggedUserId();
 if ($loggedUserId != null) {
-    ini_set('max_execution_time', 300);
+    ini_set('max_execution_time', 3);
     $gameDao = new GameDao();
     $gameStatusService = new GameStatusService();
     $databaseConnector = new DataBaseConnector();

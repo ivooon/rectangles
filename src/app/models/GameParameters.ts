@@ -1,10 +1,7 @@
 export class GameParameters {
-	public incomeScale: number;
-	public costScale: number;
-
-	constructor(incomeScale: number,
-		costScale: number) {
-		this.incomeScale = incomeScale;
-		this.costScale = costScale;
-	}
+	public numberOfPlayers: number;
+	public duration: number;
+  public incomeValue: number;
+  public incomeInterval: number;
+  public costScale: number;
 }

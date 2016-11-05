@@ -1,12 +1,10 @@
-import {Game} from "../model/Game";
-import {World} from "../model/World";
-import {Block} from "../model/Block";
+import {Game} from "../models/Game";
+import {Block} from "../models/Block";
 export class EntityManager {
 	public game: Game;
-	public gameWorld: World;
 
 	getCurrentPlayerBlocks() : Array<Block>{
-		return this.getPlayerBlocks(this.gameWorld.currentPlayer.id);
+		return this.getPlayerBlocks(this.game.activePlayerId);
 	}
 
 	getPlayerBlocks(playerId: number) : Array<Block>{

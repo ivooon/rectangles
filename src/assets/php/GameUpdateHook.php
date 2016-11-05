@@ -2,14 +2,17 @@
 require_once "service/LoggedUserService.php";
 require_once "dao/DatabaseConnector.php";
 require_once "./dao/GameDao.php";
-$loggedUserId = LoggedUserService::getLoggedUserId();
+require_once 'service/GameService.php';
 
+$loggedUserId = LoggedUserService::getLoggedUserId();
+error_reporting(0);
 if ($loggedUserId != null) {
-    ini_set('max_execution_time', 3);
+    set_time_limit ( 3 );
     $gameDao = new GameDao();
     $databaseConnector = new DataBaseConnector();
     $pdo = $databaseConnector->connectToDatabase();
 
+    $gameService = new GameService();
     $requestLastUpdateTime = $_GET['lastUpdateTime'];
     $lastUpdateTime = $requestLastUpdateTime;
     $gameId = $_GET['gameId'];
@@ -22,7 +25,7 @@ if ($loggedUserId != null) {
     } catch (Exception $e) {
 
     }
-    $result = ["lastUpdateTime" => $lastUpdateTime];
+    $result = $gameService->getGame($pdo, $gameId);
 } else {
     $result = ['status' => 'FAIL'];
     http_response_code(401);

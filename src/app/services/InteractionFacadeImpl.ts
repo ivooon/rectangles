@@ -4,26 +4,32 @@ import {Block} from "../models/Block";
 import {PlayerUpdateListener} from "../api/listener/PlayerUpdateListener";
 import {MapUpdateListener} from "../api/listener/MapUpdateListener";
 import {GameStatusListener} from "../api/listener/GameStatusListener";
+import {Game} from "../models/Game";
+import {GameContext} from "../context/GameContext";
 
 export class InteractionFacadeImpl implements InteractionFacade {
-    getCost(rect: RectDto): number {
-		return 0;
-    }
-	putRect(rect: RectDto): boolean {
-		return false;
-	}
-	getMap(): Array<Block> {
-		return null;
-	}
-	addPlayerUpdateListener(playerUpdateListener: PlayerUpdateListener): void {
 
+  getCost(rect: RectDto): number {
+		return GameContext.gameService.getCost(rect);
+  }
+
+	putRect(rect: RectDto){
+    return GameContext.gameService.putRect(rect);
+	}
+
+	getMap(): Game {
+    return GameContext.gameService.getGame();
+	}
+
+	addPlayerUpdateListener(playerUpdateListener: PlayerUpdateListener): void {
+    return GameContext.gameService.addPlayerUpdateListener(playerUpdateListener);
 	}
 	addMapUpdateListener(mapUpdateListener: MapUpdateListener): void {
-
-	}
+    return GameContext.gameService.addMapUpdateListener(mapUpdateListener);
+  }
 	addGameStatusListener(gameStatusListener: GameStatusListener): void {
-
-	}
+    return GameContext.gameService.addGameStatusListener(gameStatusListener);
+  }
 	register(username: string, password: string) {
     return $.post("/assets/php/Register.php",
       {
@@ -41,6 +47,6 @@ export class InteractionFacadeImpl implements InteractionFacade {
     );
 	}
 	startGame(): void {
-    $.post("/assets/php/StartGame.php");
-	}
+    GameContext.gameService.startGame();
+  }
 }

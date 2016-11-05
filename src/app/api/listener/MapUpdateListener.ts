@@ -1,6 +1,6 @@
-import {Block} from "../../models/Block";
+import {Game} from "../../models/Game";
 export interface MapUpdateListener {
 
-	onMapUpdate(blocks: Array<Block>): void;
+	onMapUpdate(game: Game): void;
 
 }
