@@ -6,7 +6,7 @@ import { Player } from '../models/Player';
 
 import {InteractionFacadeImpl} from "../services/InteractionFacadeImpl";
 
-declare var paper:any; 
+declare var paper:any;
 
 @Component({
   selector: 'initializator',
@@ -31,7 +31,7 @@ export class InitializatorComponent {
 	}
 
 	loginFn():void {
-		this._InteractionFacadeImpl.login(this.login.nick, this.login.password)
+		this._InteractionFacadeImpl.login(this.login.username, this.login.password)
             .then(
                 data => {
                 	console.log(data)
@@ -40,13 +40,10 @@ export class InitializatorComponent {
                     this.login = {};
                 }
             )
-            .catch(
-                err => {}
-            )
 	}
 
 	registerFn():void {
-		this._InteractionFacadeImpl.register(this.register.nick, this.register.password)
+		this._InteractionFacadeImpl.register(this.register.username, this.register.password)
             .then(
                 data => {
                 	console.log(data)
@@ -55,9 +52,6 @@ export class InitializatorComponent {
                     this.register = {};
                 }
             )
-            .catch(
-                err => {}
-            )
 	}
 
 	logout(){
@@ -65,12 +59,8 @@ export class InitializatorComponent {
 		this.isAuth = false;
 	}
 
-    helloWorld():void {
-
-        let game : Game = new Game(1, 1, null, 1, [new Player(1, 1, 1, 1, 1, '')]);
-
-        console.log(game); 
-
+    startGame():void {
+      this._InteractionFacadeImpl.startGame();
         this.draw();
     }
 

@@ -2,46 +2,51 @@
 require_once 'dao/DatabaseConnector.php';
 $result;
 
-$username = 'test';//$_POST["username"];
-$password = 'test';//$_POST["password"];
+if(isset($_POST["username"]) && isset($_POST["password"]) ) {
+  $username = $_POST["username"];
+  $password = $_POST["password"];
 
-$databaseConnector = new DataBaseConnector();
-$pdo = $databaseConnector->connectToDatabase();
+  $databaseConnector = new DataBaseConnector();
+  $pdo = $databaseConnector->connectToDatabase();
 
-$pdo->beginTransaction();
+  $pdo->beginTransaction();
 
-try {
+  try {
 
     $sql = "SELECT COUNT(*) as number_of_users FROM USER WHERE USER_NAME = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute(array(
-            $username
-        )
+        $username
+      )
     );
     if ($stmt->fetch()['number_of_users'] > 0) {
-        $result = ['status' => 'FAIL'];
-        http_response_code(404);
+      $result = ['status' => 'FAIL'];
+      http_response_code(404);
     } else {
-        $salt = rand();
-        $encryptedPassword = md5($password . $salt);
-        $sql = "INSERT INTO USER (USER_NAME, PASSWORD, SALT) VALUES (?, ?, ?)";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute(array(
-                $username,
-                $encryptedPassword,
-                $salt
-            )
-        );
+      $salt = rand();
+      $encryptedPassword = md5($password . $salt);
+      $sql = "INSERT INTO USER (USER_NAME, PASSWORD, SALT) VALUES (?, ?, ?)";
+      $stmt = $pdo->prepare($sql);
+      $stmt->execute(array(
+          $username,
+          $encryptedPassword,
+          $salt
+        )
+      );
 
-        $result = ['status' => 'SUCCESS'];
-        http_response_code(200);
+      $result = ['status' => 'SUCCESS'];
+      http_response_code(200);
     }
     $pdo->commit();
 
-} catch (Exception $e) {
+  } catch (Exception $e) {
     $result = ['status' => 'FAIL'];
     http_response_code(500);
     $pdo->rollBack();
+  }
+} else {
+  $result = ['status' => 'FAIL'];
+  http_response_code(400);
 }
 
 header('Content-type: application/json');

@@ -25,16 +25,22 @@ export class InteractionFacadeImpl implements InteractionFacade {
 
 	}
 	register(username: string, password: string) {
-		return new Promise((resolve, reject) => {
-		    resolve(false);
-		  });
+    return $.post("/assets/php/Register.php",
+      {
+        username : username,
+        password : password
+      }
+    );
 	}
 	login(username: string, password: string) {
-		return new Promise((resolve, reject) => {
-		    resolve(false);
-		  });
+    return $.post("/assets/php/Login.php",
+      {
+        username : username,
+        password : password
+      }
+    );
 	}
 	startGame(): void {
-
+    $.post("/assets/php/StartGame.php");
 	}
 }
