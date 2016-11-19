@@ -68,13 +68,11 @@ export class InitializatorComponent {
 
     	var canvas = document.getElementById("myCanvas");
 	    paper.setup(canvas);
-	    paper.view.remove();
 	 	var tool = new paper.Tool();
 	 	var firstPoint, block, w, h;
 
 	    paper.view.onMouseDown = function(event) {
 	    	firstPoint = event.point;
-	    	console.log(firstPoint)
 	    	block = new paper.Path.Rectangle(firstPoint, {width: 1, height: 1});
 	    	block.fillColor = '#000';
 		}
