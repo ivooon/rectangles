@@ -7,6 +7,7 @@ require_once "service/GameStatusService.php";
 
 error_reporting(0);
 $loggedUserId = LoggedUserService::getLoggedUserId();
+session_write_close();
 if ($loggedUserId != null) {
     set_time_limit ( 3 );
     $gameDao = new GameDao();

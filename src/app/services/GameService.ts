@@ -52,14 +52,23 @@ export class GameService {
   }
 
   public putRect(rect: RectDto) {
-    return $.post("/assets/php/CreateBlock.php",
+    return $.ajax(
       {
-        gameId: GameContext.entityManager.game.id,
-        x: rect.x,
-        y: rect.y,
-        width: rect.width,
-        height: rect.height
-      }
+        type: 'POST',
+        url: "/assets/php/CreateBlock.php",
+        data: JSON.stringify(
+          {
+            gameId: GameContext.entityManager.game.id,
+            x: rect.x,
+            y: rect.y,
+            width: rect.width,
+            height: rect.height
+          }
+        ),
+        contentType: "application/json",
+        dataType: 'json'
+      },
+
     );
   }
 

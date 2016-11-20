@@ -5,6 +5,7 @@ require_once "./dao/GameDao.php";
 require_once 'service/GameService.php';
 
 $loggedUserId = LoggedUserService::getLoggedUserId();
+session_write_close();
 error_reporting(0);
 if ($loggedUserId != null) {
     set_time_limit ( 3 );
