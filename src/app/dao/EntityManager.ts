@@ -1,5 +1,6 @@
 import {Game} from "../models/Game";
 import {Block} from "../models/Block";
+
 export class EntityManager {
 	public game: Game;
 

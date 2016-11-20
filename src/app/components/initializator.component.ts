@@ -19,6 +19,7 @@ export class InitializatorComponent {
 	isAuth = false;
 	login: any = {};
 	register: any = {};
+	cost = 0;
 
 	constructor(private _cookieService:CookieService, private _InteractionFacadeImpl:InteractionFacadeImpl) {}
 
@@ -56,7 +57,7 @@ export class InitializatorComponent {
 
 	logout(){
 		localStorage.removeItem('currentUser');
-    this._InteractionFacadeImpl.stopGame();
+    	this._InteractionFacadeImpl.stopGame();
 		this.isAuth = false;
 	}
 
@@ -66,11 +67,11 @@ export class InitializatorComponent {
     }
 
     draw():void {
-
-    	var canvas = document.getElementById("myCanvas");
+    	let _this = this;
+    	let canvas = document.getElementById("myCanvas");
 	    paper.setup(canvas);
-	 	var tool = new paper.Tool();
-	 	var firstPoint, block, w, h;
+	 	let tool = new paper.Tool();
+	 	let firstPoint, block, w, h, currentCost, budget = 2000;
 
 	    paper.view.onMouseDown = function(event) {
 	    	firstPoint = event.point;
@@ -79,16 +80,20 @@ export class InitializatorComponent {
 		}
 		
 		tool.onMouseDrag = function(event) {
-			h = event.point.y - firstPoint.y;
-			w = event.point.x - firstPoint.x;
+			h = Math.abs(event.point.y - firstPoint.y);
+			w = Math.abs(event.point.x - firstPoint.x);
 
-			block.remove();
-			block = new paper.Path.Rectangle(firstPoint, {width: w, height: h});
-			block.fillColor = '#000';
+			currentCost = _this._InteractionFacadeImpl.getCost({x: firstPoint.x, y: firstPoint.y, width: w, height: h});
+			if(currentCost <= budget){
+				_this.cost = currentCost;
+				block.remove();
+				block = new paper.Path.Rectangle(firstPoint, {width: w, height: h});
+				block.fillColor = '#000';
+			}
 		}
 
 		paper.view.onMouseUp = function(event) {
-			// TODO save block
+			_this._InteractionFacadeImpl.putRect({x: firstPoint.x, y: firstPoint.y, width: w, height: h});
 		}
     }
 
