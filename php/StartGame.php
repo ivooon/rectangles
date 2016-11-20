@@ -17,96 +17,96 @@ $now = time();
 $loggedUserId = LoggedUserService::getLoggedUserId();
 
 if ($loggedUserId != null) {
-    $pdo->beginTransaction();
-    try {
+  $pdo->beginTransaction();
+  try {
 
-        $gameDao = new GameDao();
-        $blockDao = new BlockDao();
-        $playerDao = new PlayerDao();
-        $game = $gameDao->findPlayerActiveGameAsDto($pdo, $loggedUserId);
+    $gameDao = new GameDao();
+    $blockDao = new BlockDao();
+    $playerDao = new PlayerDao();
+    $game = $gameDao->findPlayerActiveGameAsDto($pdo, $loggedUserId);
 
-        if (is_null($game)) {
-            //search or create game
-            $game = $gameDao->findAvailableGameAsDto($pdo);
-            if (is_null($game)) {
-                //create new game
-                $sql = "INSERT INTO GAME (GAME_PARAMETERS_ID) VALUES (?)";
-                $stmt = $pdo->prepare($sql);
-                $stmt->execute(array(
-                        $gameParametersDto->id
-                    )
-                );
-                $gameId = $pdo->lastInsertId();
-
-                $sql = "INSERT INTO PLAYER (USER_ID, GAME_ID, MONEY, SCORE, LAST_UPDATE, COLOR)
-                            VALUES (?, ?, 1000, 0, ?, 'RED')";
-                $stmt = $pdo->prepare($sql);
-                $stmt->execute(array(
-                        $loggedUserId,
-                        $gameId,
-                        $now
-                    )
-                );
-                $players = $playerDao->findPlayersByGameAsDto($pdo, $gameId);
-                $game = $gameDao->findGameByIdAsDto($pdo, $gameId);
-            } else {
-                //join to game
-                $gameId = $game->id;
-
-                $sql = "INSERT INTO PLAYER (USER_ID, GAME_ID, MONEY, SCORE, LAST_UPDATE, COLOR)
-                            VALUES (?, ?, 1000, 0, ?, 'RED')";
-                $stmt = $pdo->prepare($sql);
-                $stmt->execute(array(
-                        $loggedUserId,
-                        $gameId,
-                        $now
-                    )
-                );
-
-                $players = $playerDao->findPlayersByGameAsDto($pdo, $gameId);
-                if (count($players) >= $gameParametersDto->numberOfPlayers) {
-                    //start game
-                    $sql = "UPDATE GAME SET START_TIME = ?, LAST_UPDATE = ? WHERE ID = ?";
-                    $stmt = $pdo->prepare($sql);
-                    $stmt->execute(array(
-                            $now,
-                            $now,
-                            $gameId
-                        )
-                    );
-                    $game->lastUpdate = $now;
-                    $game->startTime = $now;
-                }
-
-            }
-            $players = $playerDao->findPlayersByGameAsDto($pdo, $game->id);
-            $game->players = $players;
-            $game->gameParameters = $gameParametersDto;
-            $result = $game;
-        } else {
-            $players = $playerDao->findPlayersByGameAsDto($pdo, $game->id);
-            $game->players = $players;
-            $game->gameParameters = $gameParametersDto;
-            $result = $game;
-            //game is already in progress
-        }
-        foreach ($players as &$player) {
-            $player->blocks = $blockDao->findBlocksByPlayerAsDto($pdo, $player->id);
-        }
-        $game -> activePlayerId = $playerDao -> findPlayerIdByGameAndUserId(
-            $pdo,
-            $game -> id,
-            LoggedUserService::getLoggedUserId()
+    if (is_null($game)) {
+      //search or create game
+      $game = $gameDao->findAvailableGameAsDto($pdo);
+      if (is_null($game)) {
+        //create new game
+        $sql = "INSERT INTO GAME (GAME_PARAMETERS_ID) VALUES (?)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(array(
+            $gameParametersDto->id
+          )
         );
-        $pdo->commit();
-    } catch (Exception $e) {
-        $result = ['status' => 'FAIL'];
-        http_response_code(500);
-        $pdo->rollBack();
+        $gameId = $pdo->lastInsertId();
+
+        $sql = "INSERT INTO PLAYER (USER_ID, GAME_ID, MONEY, SCORE)
+                            VALUES (?, ?, 1000, 0)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(array(
+            $loggedUserId,
+            $gameId,
+            $now
+          )
+        );
+        $players = $playerDao->findPlayersByGameAsDto($pdo, $gameId);
+        $game = $gameDao->findGameByIdAsDto($pdo, $gameId);
+      } else {
+        //join to game
+        $gameId = $game->id;
+
+        $sql = "INSERT INTO PLAYER (USER_ID, GAME_ID, MONEY, SCORE)
+                            VALUES (?, ?, 1000, 0)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(array(
+            $loggedUserId,
+            $gameId
+          )
+        );
+
+        $players = $playerDao->findPlayersByGameAsDto($pdo, $gameId);
+        if (count($players) >= $gameParametersDto->numberOfPlayers) {
+          //start game
+          $sql = "UPDATE GAME SET START_TIME = ?, LAST_UPDATE = ? WHERE ID = ?";
+          $stmt = $pdo->prepare($sql);
+          $stmt->execute(array(
+              $now,
+              $now,
+              $gameId
+            )
+          );
+          $game->lastUpdate = $now;
+          $game->startTime = $now;
+        }
+
+      }
+      $players = $playerDao->findPlayersByGameAsDto($pdo, $game->id);
+      $game->players = $players;
+      $game->gameParameters = $gameParametersDto;
+      $result = $game;
+    } else {
+      $players = $playerDao->findPlayersByGameAsDto($pdo, $game->id);
+      $game->players = $players;
+      $game->gameParameters = $gameParametersDto;
+      $result = $game;
+      //game is already in progress
     }
+    foreach ($players as &$player) {
+      $player->blocks = $blockDao->findBlocksByPlayerAsDto($pdo, $player->id);
+    }
+    $game -> activePlayerId = $playerDao -> findPlayerIdByGameAndUserId(
+      $pdo,
+      $game -> id,
+      LoggedUserService::getLoggedUserId()
+    );
+    $pdo->commit();
+  } catch (Exception $e) {
+    echo $e;
+    $result = ['status' => 'FAIL'];
+    http_response_code(500);
+    $pdo->rollBack();
+  }
 } else {
-    $result = ['status' => 'FAIL', 'reason' => 'UNAUTHORIZED'];
-    http_response_code(401);
+  $result = ['status' => 'FAIL', 'reason' => 'UNAUTHORIZED'];
+  http_response_code(401);
 }
 
 header('Content-type: application/json');

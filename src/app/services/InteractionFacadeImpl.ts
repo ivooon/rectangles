@@ -49,4 +49,8 @@ export class InteractionFacadeImpl implements InteractionFacade {
 	startGame(): void {
     GameContext.gameService.startGame();
   }
+
+  public stopGame(): void {
+    GameContext.gameService.playing = false;
+  }
 }

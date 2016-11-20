@@ -56,6 +56,7 @@ export class InitializatorComponent {
 
 	logout(){
 		localStorage.removeItem('currentUser');
+    this._InteractionFacadeImpl.stopGame();
 		this.isAuth = false;
 	}
 

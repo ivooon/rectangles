@@ -6,6 +6,8 @@ import {MapUpdateListener} from "../api/listener/MapUpdateListener";
 import {GameStatusListener} from "../api/listener/GameStatusListener";
 import {Game} from "../models/Game";
 import {GameStatusEnum} from "../api/dto/GameStatusEnum";
+import {RectCalculationService} from "./RectCalculationService";
+import {GameParameters} from "../models/GameParameters";
 
 export class GameService {
 
@@ -16,7 +18,37 @@ export class GameService {
 
 
   public getCost(rect: RectDto): number {
-    return 0;
+    let game: Game = GameContext.entityManager.game;
+    let activePlayerId: number = game.activePlayerId;
+    let costScale: number = game.gameParameters.costScale;
+    let totalCost = rect.width * rect.height;
+    for(let player of game.players){
+      let costPerPlayer : number = this.getActualMoney(player.money, game) / costScale;
+      if(player.id == activePlayerId){
+        costPerPlayer = 0;
+      }
+
+      for(let block of player.blocks){
+        let playerRect: RectDto = block.toDto();
+        if(RectCalculationService.checkCollision(rect, playerRect)){
+          let intersectRect: RectDto = RectCalculationService.intersection(rect, playerRect);
+          var intersectionField: number = intersectRect.width * intersectRect.height;
+          totalCost -= intersectionField;
+          totalCost += intersectionField * costPerPlayer;
+        }
+      }
+    }
+
+    return totalCost;
+  }
+
+  private getActualMoney(money: number, game: Game): number{
+    let epochSecondsNow = Math.round(new Date().getTime() / 1000);
+    let timeFromLastUpdate = epochSecondsNow - game.lastUpdate;
+    let iterationsToUpdate = Math.floor(timeFromLastUpdate / game.gameParameters.incomeInterval);
+
+    var moneyNow = money + iterationsToUpdate * game.gameParameters.incomeValue;
+    return moneyNow > game.gameParameters.maxMoney ? game.gameParameters.maxMoney : moneyNow;
   }
 
   public putRect(rect: RectDto) {
@@ -27,7 +59,8 @@ export class GameService {
         y: rect.y,
         width: rect.width,
         height: rect.height
-      });
+      }
+    );
   }
 
   public getGame(): Game {

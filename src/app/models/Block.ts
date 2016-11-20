@@ -1,4 +1,5 @@
 import {Player} from "./Player";
+import {RectDto} from "../api/dto/RectDto";
 export class Block {
 
 	public x: number;
@@ -16,4 +17,8 @@ export class Block {
 		this.width = width;
 		this.height = height;
 	}
+
+	public toDto(): RectDto{
+    return new RectDto(this.x, this.y, this.width, this.height);
+  }
 }

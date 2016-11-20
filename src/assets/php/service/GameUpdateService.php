@@ -16,6 +16,9 @@ class GameUpdateService
         $iterationsToUpdate = floor($timeFromLastUpdate / $incomeInterval);
         foreach ($game->players as &$player) {
             $player->money += $iterationsToUpdate * $incomeValue;
+            if($player->money > $gameParameters -> maxMoney){
+              $player->money = $gameParameters -> maxMoney;
+            }
             $score = 0;
             foreach ($player->blocks as &$block) {
                 $score += $block->width * $block->height;

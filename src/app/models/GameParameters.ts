@@ -4,4 +4,7 @@ export class GameParameters {
   public incomeValue: number;
   public incomeInterval: number;
   public costScale: number;
+  public maxMoney: number;
+  public maxWidth: number;
+  public maxHeight: number;
 }
