@@ -6,17 +6,20 @@ export class Block {
 	public y: number;
 	public width: number;
 	public height: number;
-
+  public id: number;
 	constructor(
 		x: number,
 		y: number,
 		width: number,
-		height: number) {
+		height: number,
+    id: number) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
+    this.id = id;
 	}
+
 
 	public toDto(): RectDto{
     return new RectDto(this.x, this.y, this.width, this.height);

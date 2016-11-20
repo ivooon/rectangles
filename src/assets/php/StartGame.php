@@ -43,8 +43,7 @@ if ($loggedUserId != null) {
         $stmt = $pdo->prepare($sql);
         $stmt->execute(array(
             $loggedUserId,
-            $gameId,
-            $now
+            $gameId
           )
         );
         $players = $playerDao->findPlayersByGameAsDto($pdo, $gameId);
