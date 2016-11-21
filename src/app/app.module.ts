@@ -5,19 +5,23 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { InitializatorComponent } from './components/index';
+import { AuthComponent } from './components/index';
+
 import { InteractionFacadeImpl } from './services/InteractionFacadeImpl';
+import { AuthService } from './services/AuthService';
 
 @NgModule({
   declarations: [
     AppComponent,
-    InitializatorComponent
+    InitializatorComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule
   ],
-  providers: [InteractionFacadeImpl],
+  providers: [InteractionFacadeImpl, AuthService],
   bootstrap: [AppComponent, InitializatorComponent]
 })
 export class AppModule { }

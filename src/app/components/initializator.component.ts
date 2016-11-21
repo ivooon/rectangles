@@ -1,69 +1,59 @@
 import { Component, OnInit } from '@angular/core';
-import { CookieService } from 'angular2-cookie/core';
+// import { CookieService } from 'angular2-cookie/core';
 
 import { Game } from '../models/Game';
 import { Player } from '../models/Player';
+import { GameStatusListener } from '../api/listener/GameStatusListener';
+import { MapUpdateListener } from '../api/listener/MapUpdateListener';
+import { PlayerUpdateListener } from '../api/listener/PlayerUpdateListener';
 
-import {InteractionFacadeImpl} from "../services/InteractionFacadeImpl";
+import { AuthService } from '../services/AuthService';
+import { InteractionFacadeImpl } from "../services/InteractionFacadeImpl";
 
 declare var paper:any;
 
 @Component({
   selector: 'initializator',
   templateUrl: 'initializator.component.html',
-  providers: [CookieService]
+  providers: []
 })
 
 
-export class InitializatorComponent {
-	isAuth = false;
-	login: any = {};
-	register: any = {};
+export class InitializatorComponent implements GameStatusListener, MapUpdateListener, PlayerUpdateListener{	
 	cost = 0;
 
-	constructor(private _cookieService:CookieService, private _InteractionFacadeImpl:InteractionFacadeImpl) {}
+	constructor(private _AuthService:AuthService, private _InteractionFacadeImpl:InteractionFacadeImpl) {}
 
-	ngOnInit() {
-		let user = localStorage.getItem('currentUser');
-		if(user) {
-			this.isAuth = true;
-			//TODO renew session
+
+	onGameStatusUpdate(gameStatus: String): void {
+		switch(gameStatus){
+			case 'PENDING': 
+				break;
+			case 'STARTED':
+				break;
+			case 'FINISHED':
+				break;
+			default:
+				break;
 		}
+		console.log('onGameStatusUpdate', gameStatus)
 	}
 
-	loginFn():void {
-		this._InteractionFacadeImpl.login(this.login.username, this.login.password)
-            .then(
-                data => {
-                	console.log(data)
-                    localStorage.setItem('currentUser',  'costamostam');
-                    this.isAuth = true;
-                    this.login = {};
-                }
-            )
+	onMapUpdate(game: Game): void {
+		console.log('onMapUpdate', game)
 	}
 
-	registerFn():void {
-		this._InteractionFacadeImpl.register(this.register.username, this.register.password)
-            .then(
-                data => {
-                	console.log(data)
-                    localStorage.setItem('currentUser',  'costamostam');
-                    this.isAuth = true;
-                    this.register = {};
-                }
-            )
+	onPlayerUpdate(player: Player): void {
+		console.log('onPlayerUpdate', player)
 	}
 
-	logout(){
-		localStorage.removeItem('currentUser');
-    	this._InteractionFacadeImpl.stopGame();
-		this.isAuth = false;
-	}
-
+	
     startGame():void {
      	this._InteractionFacadeImpl.startGame();
         this.draw();
+        this._InteractionFacadeImpl.addGameStatusListener(this);
+        this._InteractionFacadeImpl.addMapUpdateListener(this);
+        this._InteractionFacadeImpl.addPlayerUpdateListener(this);
     }
 
     draw():void {
@@ -80,10 +70,11 @@ export class InitializatorComponent {
 		}
 		
 		tool.onMouseDrag = function(event) {
-			h = Math.abs(event.point.y - firstPoint.y);
-			w = Math.abs(event.point.x - firstPoint.x);
+			h = event.point.y - firstPoint.y;
+			w = event.point.x - firstPoint.x;
 
-			currentCost = _this._InteractionFacadeImpl.getCost({x: firstPoint.x, y: firstPoint.y, width: w, height: h});
+			currentCost = _this._InteractionFacadeImpl.getCost({x: firstPoint.x, y: firstPoint.y, width: Math.abs(w), height: Math.abs(h)});
+			console.log(currentCost)
 			if(currentCost <= budget){
 				_this.cost = currentCost;
 				block.remove();
@@ -93,8 +84,12 @@ export class InitializatorComponent {
 		}
 
 		paper.view.onMouseUp = function(event) {
-			_this._InteractionFacadeImpl.putRect({x: firstPoint.x, y: firstPoint.y, width: w, height: h});
+			_this._InteractionFacadeImpl.putRect({x: firstPoint.x, y: firstPoint.y, width: Math.abs(w), height: Math.abs(h)});
 		}
     }
 
+
+    logout(){
+		this._AuthService.logout();
+	}
 }
