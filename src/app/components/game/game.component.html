@@ -1,0 +1,47 @@
+
+<div>
+	<div *ngIf="gameStatus === 'PENDING'">
+		<div> OCZEKIWANIE NA GRACZY</div>
+		PENDING
+	</div>
+
+	<div *ngIf="gameStatus === 'STARTED'">
+		
+		<div class="score-table-wrapper"> 
+			<table *ngIf="game" class="score-table">
+				<thead>
+					<tr>
+						<th> PLAYER </th>
+						<th> MONEY </th>
+						<th> SCORE </th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let player of game.players" [style.backgroundColor]="getPlayerColor(player.id)">
+						<td>
+							Player {{player.id}}
+						</td>
+						<td>
+							{{player.money}}
+						</td>
+						<td>
+							{{player.score}}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div id="canvasWrapper" [style.width.px]="canvasW" [style.height.px]="canvasH">
+			<canvas id="myCanvas" resize="false"></canvas>
+		</div>
+	</div>
+
+	<div *ngIf="gameStatus === 'FINISHED'">
+		
+		<div>TABELA PODSUMOWUJACA</div>
+		<div> PRZYCISK NEXT </div>
+		FINISHED
+	</div>
+
+</div>

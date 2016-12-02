@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body, .content {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+.score-table-wrapper {
+	height: 20%;
+}
+
+.score-table {
+	border-collapse: collapse; 
+	text-align: left; 
+	width: 100%; 
+	margin: 0 auto;
+}
+
+.score-table td, .score-table th {
+	padding: 3px;
+}
+
+
+#canvasWrapper {
+	position: relative;
+	margin: 0 auto;
+    display: block;
+}
+
+#myCanvas {
+	border: 1px dashed #817F82;
+    width: 100%;
+    height: 100%;
+}
+/*
+canvas[resize] {
+    width: 100%;
+    height: 100%;
+}*/

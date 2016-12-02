@@ -102,14 +102,17 @@ export class GameService {
         game.status = "PENDING";
         GameContext.entityManager.game = game;
         //start listening
-        for (let listener of GameContext.gameService.gameStatusListeners) {
-          listener.onGameStatusUpdate(game.status);
-        }
-        this.listenGameStatus();
         for (let listener of GameContext.gameService.mapUpdateListeners) {
           listener.onMapUpdate(game);
         }
         this.listenGameUpdate();
+        for (let listener of GameContext.gameService.gameStatusListeners) {
+          listener.onGameStatusUpdate(game.status);
+        }
+        this.listenGameStatus();
+        
+        // GameContext.gameService.listenGameUpdate();
+
       }
     )
   }

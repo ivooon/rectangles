@@ -6,22 +6,26 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { InitializatorComponent } from './components/index';
 import { AuthComponent } from './components/index';
+import { GameComponent } from './components/index';
 
 import { InteractionFacadeImpl } from './services/InteractionFacadeImpl';
 import { AuthService } from './services/AuthService';
+import { WindowService } from './services/WindowService';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     InitializatorComponent,
-    AuthComponent
+    AuthComponent,
+    GameComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule
   ],
-  providers: [InteractionFacadeImpl, AuthService],
+  providers: [InteractionFacadeImpl, AuthService, WindowService],
   bootstrap: [AppComponent, InitializatorComponent]
 })
 export class AppModule { }
