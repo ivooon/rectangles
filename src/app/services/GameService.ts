@@ -15,7 +15,22 @@ export class GameService {
   public playerUpdateListeners: Array<PlayerUpdateListener> = [];
   public mapUpdateListeners: Array<MapUpdateListener> = [];
   public gameStatusListeners: Array<GameStatusListener> = [];
+  public playerUpdater: any = function(){
+    let game: Game = GameContext.entityManager.game;
+    let maxMoney: number = game.gameParameters.maxMoney;
 
+    for(let player of game.players){
+      player.money += game.gameParameters.incomeValue;
+      if(player.money > maxMoney){
+        player.money = maxMoney;
+      }
+      for (let listener of GameContext.gameService.playerUpdateListeners) {
+        listener.onPlayerUpdate(player);
+      }
+    }
+
+  };
+  public playerUpdaterId: any;
 
   public getCost(rect: RectDto): number {
     let game: Game = GameContext.entityManager.game;
@@ -110,7 +125,7 @@ export class GameService {
           listener.onGameStatusUpdate(game.status);
         }
         this.listenGameStatus();
-        
+
         // GameContext.gameService.listenGameUpdate();
 
       }
@@ -133,8 +148,12 @@ export class GameService {
           try {
             let game: Game = GameContext.entityManager.game;
             game.status = data.gameStatus;
-            if (game.status == "FINISHED") {
+            if(game.status == "STARTED") {
+              clearInterval(GameContext.gameService.playerUpdaterId);
+              GameContext.gameService.playerUpdaterId = setInterval(GameContext.gameService.playerUpdater, game.gameParameters.incomeInterval*1000);
+            } else if (game.status == "FINISHED") {
               GameContext.gameService.playing = false;
+              clearInterval(GameContext.gameService.playerUpdaterId);
             }
             console.log("Game status Updated: " + game.status);
             for (let listener of GameContext.gameService.gameStatusListeners) {

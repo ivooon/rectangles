@@ -41,11 +41,11 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 		this.gameStatus = gameStatus;
 
 		switch(gameStatus){
-			case 'PENDING': 
+			case 'PENDING':
 				break;
 			case 'STARTED':
 				this.setCanvasParams();
-				setTimeout(() => { 
+				setTimeout(() => {
 					this.draw();
 				}, 1000);
 				break;
@@ -59,7 +59,7 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 	onMapUpdate(game: Game): void {
 		this.game = game;
 		this.color = this.getPlayerColor(game.activePlayerId)
-		
+
 		this.refreshView();
 	}
 
@@ -147,7 +147,7 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 			    fillColor: _this.color
 			});
 		}
-		
+
 		tool.onMouseDrag = function(event) {
 			h = event.point.y - firstPoint.y;
 			w = event.point.x - firstPoint.x;
@@ -155,7 +155,7 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 			w2 = Math.abs(Math.floor(w / _this.scale));
 
 			currentCost = _this._InteractionFacadeImpl.getCost({x: firstPoint.x, y: firstPoint.y, width: w2, height: h2});
-			if(currentCost <= budget){
+			//if(currentCost <= budget){
 				_this.cost = currentCost;
 				_this.block.remove();
 				_this.block = new paper.Path.Rectangle({
@@ -163,7 +163,7 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 				    size: [w, h],
 				    fillColor: _this.color
 				});
-			}
+			//}
 		}
 
 		paper.view.onMouseUp = function(event) {

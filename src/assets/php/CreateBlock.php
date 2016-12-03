@@ -25,10 +25,10 @@ if ($loggedUserId != null) {
 
             $gameId = $obj["gameId"];
             $block = new BlockDto();
-            $block->x = $obj["x"];
-            $block->y = $obj["y"];
-            $block->width = $obj["width"];
-            $block->height = $obj["height"];
+            $block->x = round($obj["x"]);
+            $block->y = round($obj["y"]);
+            $block->width = round($obj["width"]);
+            $block->height = round($obj["height"]);
 
 
             $playerId = $playerDao->findPlayerIdByGameAndUserId($pdo, $gameId, $loggedUserId);
