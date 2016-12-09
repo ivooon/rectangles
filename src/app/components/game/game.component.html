@@ -33,7 +33,8 @@
 		</div>
 
 		<div id="canvasWrapper" [style.width.px]="canvasW" [style.height.px]="canvasH">
-			<canvas id="myCanvas" resize="false"></canvas>
+			<div id="currentCost">{{cost}}</div>
+			<canvas id="myCanvas" [attr.width]="canvasW" [attr.height]="canvasH" resize="false"></canvas>
 		</div>
 	</div>
 

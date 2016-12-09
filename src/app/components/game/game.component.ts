@@ -24,6 +24,7 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 	gameStatus = null;
 	game = null;
 	player = null;
+	activePlayer = null;
 	color = null;
 	cost = 0;
 	canvasW = null;
@@ -31,6 +32,8 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 	scale = 1;
 	block;
 	colors = ['#6DD6DA', '#AE8CA3', '#817F82', '#A2ABB5', '#95D9DA'];
+	canvas = null;
+	context = null;
 
 	constructor(private _InteractionFacadeImpl:InteractionFacadeImpl, private window: WindowService) {}
 
@@ -58,7 +61,9 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 
 	onMapUpdate(game: Game): void {
 		this.game = game;
-		this.color = this.getPlayerColor(game.activePlayerId)
+		this.activePlayer = game.activePlayerId;
+		this.player = _.findWhere(game.players, {id: this.activePlayer});
+		this.color = this.getPlayerColor(game.activePlayerId);
 
 		this.refreshView();
 	}
@@ -81,43 +86,13 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
     	let maxW = gameParams.maxWidth;
     	let nww = this.nww(maxW, maxH);
     	let window = this.window.nativeWindow;
-    	let wH = window.innerHeight * 0.75;
+    	let wH = window.innerHeight * 0.7;
     	let wW = window.innerWidth;
 
-    	this.scale = Math.floor((wW - (wW%nww))/maxW);
+    	this.canvasH = wH - (wH%nww);
+    	this.scale = Math.floor(this.canvasH/maxH);
     	this.canvasW = this.scale * maxW;
-    	this.canvasH = this.scale * maxH;
     }
-
-    refreshView() {
-    	let _this = this;
-
-    	if(paper.project) {
-	    	paper.project.activeLayer.removeChildren();
-	    	paper.project.clear()
-
-	    	_.each(this.game.players, function(player) {
-	    		player.color = _this.getPlayerColor(player.id);
-	    		_.each(player.blocks, function(block) {
-	    			_this.drawRect(block, player.color);
-	    		})
-	    	});
-	    }
-    }
-
-    getPlayerColor(playerId) {
-    	let index = _.indexOf(this.game.players, _.findWhere(this.game.players, {id: playerId}));
-    	return this.colors[index];
-    }
-
-    drawRect(block, color) {
-    	this.block = new paper.Path.Rectangle({
-		    point: [block.x*this.scale, block.y*this.scale],
-		    size: [block.width*this.scale, block.height*this.scale],
-		    fillColor: color
-		});
-    }
-
 
     nww(a, b) {
     	let pom;
@@ -131,49 +106,98 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 	    return ab/a;
     }
 
+    nwd(a, b) {
+    	let c;
+	    while(b != 0)
+	    {
+	        c = a % b;
+	        a = b;
+	        b = c;
+	    }
+	    return a; 
+    }
+
+    getPlayerColor(playerId) {
+    	let index = _.indexOf(this.game.players, _.findWhere(this.game.players, {id: playerId}));
+    	return this.colors[index];
+    }
+
+    refreshView() {
+    	let _this = this;
+
+    	if(this.context) {
+    		this.context.clearRect(0, 0, $('#canvasWrapper').width(), $('#canvasWrapper').height());
+
+	    	_.each(this.game.players, function(player) {
+	    		player.color = _this.getPlayerColor(player.id);
+	    		_.each(player.blocks, function(block) {
+	    			_this.drawRect(block, player.color);
+	    		})
+	    	});
+	    }
+    }
+   
+    drawRect(block, color) {
+    	let scale = this.scale;
+    	this.context.beginPath();
+        this.context.fillStyle = color;
+        this.context.fillRect(block.x * scale, block.y * scale, block.width * scale, block.height * scale);
+    }
+
     draw():void {
     	var _this = this;
-    	var canvas = document.getElementById("myCanvas");
 
-	    paper.setup(canvas);
-	 	var tool = new paper.Tool();
-	 	var firstPoint, w, h, w2, h2, currentCost, budget = 200;
-
-	    paper.view.onMouseDown = function(event) {
-	    	firstPoint = event.point;
-	    	_this.block = new paper.Path.Rectangle({
-			    point: [firstPoint.x, firstPoint.y],
-			    size: [1,1],
-			    fillColor: _this.color
-			});
+		function Box() {
+			this.x = 0;
+			this.y = 0;
+			this.width = 0;
+			this.height = 0;
 		}
 
-		tool.onMouseDrag = function(event) {
-			h = event.point.y - firstPoint.y;
-			w = event.point.x - firstPoint.x;
-			h2 = Math.abs(Math.floor(h / _this.scale));
-			w2 = Math.abs(Math.floor(w / _this.scale));
+		_this.canvas 	 = <HTMLCanvasElement> document.getElementById("myCanvas");
+	    _this.context    =  _this.canvas.getContext("2d");
+			
+	    _this.canvas.onmousedown = function(e){
+	    	var elements = _.findWhere(_this.game.players, {id: _this.activePlayer}).blocks;
+			var box = new Box()
+	      	box.x = Math.round((e.x - $('#canvasWrapper').offset().left) / _this.scale);
+	      	box.y = Math.round((e.y - $('#canvasWrapper').offset().top) / _this.scale);
+			box.width = 0;
+	      	box.height = 0;
+	      	elements.push(box)
 
-			currentCost = _this._InteractionFacadeImpl.getCost({x: firstPoint.x, y: firstPoint.y, width: w2, height: h2});
-			//if(currentCost <= budget){
-				_this.cost = currentCost;
-				_this.block.remove();
-				_this.block = new paper.Path.Rectangle({
-				    point: [firstPoint.x, firstPoint.y],
-				    size: [w, h],
-				    fillColor: _this.color
-				});
-			//}
-		}
+			_this.canvas.onmousemove = function(e) {
+				let w = Math.round(e.x - $('#canvasWrapper').offset().left) - (box.x * _this.scale),
+				h = Math.round(e.y - $('#canvasWrapper').offset().top) - (box.y * _this.scale),
+				w2 = w / _this.scale,
+				h2 = h / _this.scale;
+				_this.cost = _this._InteractionFacadeImpl.getCost({x: box.x, y: box.y, width: Math.abs(w2), height: Math.abs(h2)});
 
-		paper.view.onMouseUp = function(event) {
-			if(w2 >= _this.scale && h2 >= _this.scale) {
-				_this._InteractionFacadeImpl.putRect({x: firstPoint.x/_this.scale, y: firstPoint.y/_this.scale, width: w2, height: h2});
-			} else {
-				_this.block.remove();
-			}
-		}
+				if(_this.cost <= _this.player.money){
+		      		box.width = w2;
+		      		box.height = h2;
+		      		if (e.buttons == 0){
+			          	_this.canvas.onmousemove = _this.canvas.onmouseup = function(){};
+			          	elements.pop()
+			        }
+		      		_this.refreshView();
+	      		}
+	      	}
+	      
+	      	_this.canvas.onmouseup = function(e){
+	      		_this.createBlock(box);
+				_this.refreshView();
+				_this.cost = 0;
+	      		_this.canvas.onmousemove = _this.canvas.onmouseup = function(){};
+	      	}
+	    }
+    }
 
-		this.refreshView();
+    createBlock(box) {
+    	let w = box.width;
+    	let h = box.height;
+    	let x = w < 0 ? box.x + w : box.x;
+    	let y = h < 0 ? box.y + h : box.y; 
+    	this._InteractionFacadeImpl.putRect({x: Math.abs(x), y: Math.abs(y), width: w, height: h});
     }
 }
