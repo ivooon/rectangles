@@ -12,13 +12,16 @@ import { InteractionFacadeImpl } from './services/InteractionFacadeImpl';
 import { AuthService } from './services/AuthService';
 import { WindowService } from './services/WindowService';
 
+import { secondsToTime } from './filters/secondsToTime.filter';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     InitializatorComponent,
     AuthComponent,
-    GameComponent
+    GameComponent,
+    secondsToTime
   ],
   imports: [
     BrowserModule,

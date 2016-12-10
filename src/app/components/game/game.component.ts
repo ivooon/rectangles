@@ -9,7 +9,6 @@ import { PlayerUpdateListener } from '../../api/listener/PlayerUpdateListener';
 
 import { WindowService } from '../../services/WindowService';
 
-declare var paper:any;
 declare var _:any;
 
 @Component({
@@ -34,6 +33,7 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 	colors = ['#6DD6DA', '#AE8CA3', '#817F82', '#A2ABB5', '#95D9DA'];
 	canvas = null;
 	context = null;
+	timeLeft = 10000;
 
 	constructor(private _InteractionFacadeImpl:InteractionFacadeImpl, private window: WindowService) {}
 
@@ -44,16 +44,17 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 		this.gameStatus = gameStatus;
 
 		switch(gameStatus){
+
 			case 'PENDING':
 				break;
+
 			case 'STARTED':
-				this.setCanvasParams();
-				setTimeout(() => {
-					this.draw();
-				}, 1000);
+				this.afterGameStart();
 				break;
+
 			case 'FINISHED':
 				break;
+
 			default:
 				break;
 		}
@@ -65,12 +66,52 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 		this.player = _.findWhere(game.players, {id: this.activePlayer});
 		this.color = this.getPlayerColor(game.activePlayerId);
 
+		// this.isGameOver();
+		
 		this.refreshView();
 	}
 
 	onPlayerUpdate(player: Player): void {
 		this.player = player;
 		console.log('onPlayerUpdate', player)
+	}
+
+	afterGameStart() {
+		this.setCanvasParams();
+
+		setTimeout(() => {
+			this.timeCounter();
+			this.draw();
+			this.refreshView();
+		}, 1000);
+	}
+
+	isGameOver(){
+		let isGameOver = _.every(this.game.players, function(player) { return player.money === 0; });
+		if(isGameOver || !this.timeLeft){
+			this.endGame();
+		}
+		return isGameOver;
+	}
+
+	endGame() {
+		this._InteractionFacadeImpl.stopGame();
+		this.gameStatus = 'FINISHED';
+	}
+
+	timeCounter() {
+		let currentTime = Math.round(new Date().getTime()/1000);
+		let durationTime = currentTime - this.game.startTime;
+		this.timeLeft = this.game.gameParameters.duration - durationTime;
+
+		if(!this.timeLeft){
+			this.endGame();
+			return;
+		}
+
+		setTimeout(() => {
+			this.timeCounter();
+		}, 1000);
 	}
 
 	startGame():void {
@@ -169,13 +210,16 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 			_this.canvas.onmousemove = function(e) {
 				let w = Math.round(e.x - $('#canvasWrapper').offset().left) - (box.x * _this.scale),
 				h = Math.round(e.y - $('#canvasWrapper').offset().top) - (box.y * _this.scale),
-				w2 = w / _this.scale,
-				h2 = h / _this.scale;
-				_this.cost = _this._InteractionFacadeImpl.getCost({x: box.x, y: box.y, width: Math.abs(w2), height: Math.abs(h2)});
+				w2 = Math.round(w / _this.scale),
+				h2 = Math.round(h / _this.scale);
+
+				let res = _this.countCoordinates({width: w2, height: h2, x: box.x, y: box.y});
+				_this.cost = _this._InteractionFacadeImpl.getCost({x: res.x, y: res.y, width: res.w, height: res.h});
 
 				if(_this.cost <= _this.player.money){
-		      		box.width = w2;
+		      		box.width  = w2;
 		      		box.height = h2;
+
 		      		if (e.buttons == 0){
 			          	_this.canvas.onmousemove = _this.canvas.onmouseup = function(){};
 			          	elements.pop()
@@ -194,10 +238,19 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
     }
 
     createBlock(box) {
+    	let res = this.countCoordinates(box);
+    	
+    	this._InteractionFacadeImpl.putRect({x: res.x, y: res.y, width: res.w, height: res.h});
+    }
+
+    countCoordinates(box) {
     	let w = box.width;
     	let h = box.height;
     	let x = w < 0 ? box.x + w : box.x;
     	let y = h < 0 ? box.y + h : box.y; 
-    	this._InteractionFacadeImpl.putRect({x: Math.abs(x), y: Math.abs(y), width: w, height: h});
+    	w = Math.abs(w);
+    	h = Math.abs(h);
+    	return {w:w,h:h,x:x,y:y};
     }
+
 }

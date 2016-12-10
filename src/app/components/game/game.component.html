@@ -35,12 +35,15 @@
 		<div id="canvasWrapper" [style.width.px]="canvasW" [style.height.px]="canvasH">
 			<canvas id="myCanvas" [attr.width]="canvasW" [attr.height]="canvasH" resize="false"></canvas>
 		</div>
+		<div id="timer">{{ timeLeft | secondsToTime }}</div>
 	</div>
 
 	<div *ngIf="gameStatus === 'FINISHED'">
 		
 		<div>TABELA PODSUMOWUJACA</div>
-		<div> PRZYCISK NEXT </div>
+		<div> 
+			<button class="btn btn-primary" (click)="startGame()">NEXT GAME</button>
+		</div>
 		FINISHED
 	</div>
 
