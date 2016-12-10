@@ -168,14 +168,22 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 
     	if(this.context) {
     		this.context.clearRect(0, 0, $('#canvasWrapper').width(), $('#canvasWrapper').height());
-
-	    	_.each(this.game.players, function(player) {
-	    		player.color = _this.getPlayerColor(player.id);
-	    		_.each(player.blocks, function(block) {
-	    			_this.drawRect(block, player.color);
-	    		})
+    		let players = _.without(this.game.players, this.player)
+	    	_.each(players, function(player) {
+	    		if(player.id !== _this.activePlayer){
+		    		player.color = _this.getPlayerColor(player.id);
+		    		_this.drawBlocks(player.blocks, player.color);
+		    	}
 	    	});
+	    	this.drawBlocks(this.player.blocks, this.color);
 	    }
+    }
+
+    drawBlocks(blocks, color) {
+    	let _this = this;
+    	_.each(blocks, function(block) {
+			_this.drawRect(block, color);
+		})
     }
    
     drawRect(block, color) {
@@ -199,7 +207,8 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 	    _this.context    =  _this.canvas.getContext("2d");
 			
 	    _this.canvas.onmousedown = function(e){
-	    	var elements = _.findWhere(_this.game.players, {id: _this.activePlayer}).blocks;
+	    	var elements = _this.player.blocks;
+
 			var box = new Box()
 	      	box.x = Math.round((e.x - $('#canvasWrapper').offset().left) / _this.scale);
 	      	box.y = Math.round((e.y - $('#canvasWrapper').offset().top) / _this.scale);
