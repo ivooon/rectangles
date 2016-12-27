@@ -69,7 +69,7 @@ class GeometricService
     $totalCost = $blockToCreate->width * $blockToCreate->height;
 
     foreach ($game->players as &$player) {
-      $costPerPlayer = $player -> money / $costScale;
+      $costPerPlayer = floor($player -> money / $costScale);
 
       if ($player->id == $playerId) {
         $costPerPlayer = 0;
@@ -83,9 +83,8 @@ class GeometricService
           $totalCost += $intersectionField * $costPerPlayer;
         }
       }
-
-      return $totalCost;
     }
+    return $totalCost;
   }
 
   public function subtract($rect1, $rect2){
@@ -191,15 +190,15 @@ class GeometricService
     return $inclusive ?
       !(
         $block1->x > $block2->x + $block2->width ||
-        $block1->x + $block2->width < $block2->x ||
+        $block1->x + $block1->width < $block2->x ||
         $block1->y > $block2->y + $block2->height ||
-        $block1->y + $block2->height < $block2->y
+        $block1->y + $block1->height < $block2->y
       ) :
       !(
         $block1->x >= $block2->x + $block2->width ||
-        $block1->x + $block2->width <= $block2->x ||
+        $block1->x + $block1->width <= $block2->x ||
         $block1->y >= $block2->y + $block2->height ||
-        $block1->y + $block2->height <= $block2->y
+        $block1->y + $block1->height <= $block2->y
       );
   }
 

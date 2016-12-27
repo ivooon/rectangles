@@ -39,11 +39,12 @@ if ($loggedUserId != null) {
         $gameId = $pdo->lastInsertId();
 
         $sql = "INSERT INTO PLAYER (USER_ID, GAME_ID, MONEY, SCORE)
-                            VALUES (?, ?, 1000, 0)";
+                            VALUES (?, ?, ?, 0)";
         $stmt = $pdo->prepare($sql);
         $stmt->execute(array(
             $loggedUserId,
-            $gameId
+            $gameId,
+            $gameParametersDto->maxMoney
           )
         );
         $players = $playerDao->findPlayersByGameAsDto($pdo, $gameId);
@@ -53,11 +54,12 @@ if ($loggedUserId != null) {
         $gameId = $game->id;
 
         $sql = "INSERT INTO PLAYER (USER_ID, GAME_ID, MONEY, SCORE)
-                            VALUES (?, ?, 1000, 0)";
+                            VALUES (?, ?, ?, 0)";
         $stmt = $pdo->prepare($sql);
         $stmt->execute(array(
             $loggedUserId,
-            $gameId
+            $gameId,
+            $gameParametersDto->maxMoney
           )
         );
 

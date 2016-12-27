@@ -38,7 +38,7 @@ export class GameService {
     let costScale: number = game.gameParameters.costScale;
     let totalCost = rect.width * rect.height;
     for(let player of game.players){
-      let costPerPlayer : number = this.getActualMoney(player.money, game) / costScale;
+      let costPerPlayer : number = Math.floor(this.getActualMoney(player.money, game) / costScale);
       if(player.id == activePlayerId){
         costPerPlayer = 0;
       }
@@ -63,7 +63,7 @@ export class GameService {
   }
 
   private getActualMoney(money: number, game: Game): number{
-    let epochSecondsNow = Math.round(new Date().getTime() / 1000);
+    let epochSecondsNow = Math.floor(new Date().getTime() / 1000);
     let timeFromLastUpdate = epochSecondsNow - game.lastUpdate;
     let iterationsToUpdate = Math.floor(timeFromLastUpdate / game.gameParameters.incomeInterval);
 
