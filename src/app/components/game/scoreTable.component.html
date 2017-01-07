@@ -1,0 +1,22 @@
+<table  class="score-table">
+	<thead>
+		<tr>
+			<th> PLAYER </th>
+			<th *ngIf="!gameOver"> MONEY </th>
+			<th> SCORE </th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let player of players" [style.backgroundColor]="player.color">
+			<td>
+				Player {{player.id}}
+			</td>
+			<td *ngIf="!gameOver">
+				{{player.money}}
+			</td>
+			<td>
+				{{player.score}}
+			</td>
+		</tr>
+	</tbody>
+</table>

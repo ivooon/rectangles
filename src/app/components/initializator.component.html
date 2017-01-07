@@ -2,7 +2,7 @@
 <div *ngIf="_AuthService.isAuth()" class="content">
 
     <div [hidden]="letsPlay">
-    	<div>
+    	<div class="center-container">
     		<button (click)="startGame()" class="btn btn-primary">START</button>
     		<button (click)="logout()" class="btn btn-primary">LOGOUT</button>
     	</div>

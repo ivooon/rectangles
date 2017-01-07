@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { InitializatorComponent } from './components/index';
 import { AuthComponent } from './components/index';
 import { GameComponent } from './components/index';
+import { ScoreTableComponent } from './components/index';
 
 import { InteractionFacadeImpl } from './services/InteractionFacadeImpl';
 import { AuthService } from './services/AuthService';
@@ -21,6 +22,7 @@ import { secondsToTime } from './filters/secondsToTime.filter';
     InitializatorComponent,
     AuthComponent,
     GameComponent,
+    ScoreTableComponent,
     secondsToTime
   ],
   imports: [

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 import { Game } from '../../models/Game';
 import { Player } from '../../models/Player';
@@ -8,6 +8,8 @@ import { MapUpdateListener } from '../../api/listener/MapUpdateListener';
 import { PlayerUpdateListener } from '../../api/listener/PlayerUpdateListener';
 
 import { WindowService } from '../../services/WindowService';
+
+import { ScoreTableComponent } from './scoreTable.component';
 
 declare var _:any;
 
@@ -23,7 +25,6 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 	gameStatus = null;
 	game = null;
 	player = null;
-	activePlayer = null;
 	color = null;
 	cost = 0;
 	canvasW = null;
@@ -34,6 +35,10 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 	canvas = null;
 	context = null;
 	timeLeft = 10000;
+	isWinner = null;
+
+	@ViewChild(GameComponent) 
+	private _GameComponent: GameComponent;
 
 	constructor(private _InteractionFacadeImpl:InteractionFacadeImpl, private window: WindowService) {}
 
@@ -53,6 +58,8 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 				break;
 
 			case 'FINISHED':
+				let winnerId = _.max(this.game.players, function(player){ return player.score; }).id;
+				this.isWinner = winnerId === this.player.id;
 				break;
 
 			default:
@@ -62,11 +69,10 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 
 	onMapUpdate(game: Game): void {
 		this.game = game;
-		this.activePlayer = game.activePlayerId;
-		this.player = _.findWhere(game.players, {id: this.activePlayer});
-		this.color = this.getPlayerColor(game.activePlayerId);
-
-		// this.isGameOver();
+		this.setPlayersColors();
+		let activePlayerId = game.activePlayerId;
+		this.player = _.findWhere(game.players, {id: activePlayerId});
+		this.color = this.getPlayerColor(activePlayerId);
 		
 		this.refreshView();
 	}
@@ -83,15 +89,8 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 			this.timeCounter();
 			this.draw();
 			this.refreshView();
-		}, 1000);
-	}
 
-	isGameOver(){
-		let isGameOver = _.every(this.game.players, function(player) { return player.money === 0; });
-		if(isGameOver || !this.timeLeft){
-			this.endGame();
-		}
-		return isGameOver;
+		}, 1000);
 	}
 
 	endGame() {
@@ -125,37 +124,24 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
     	let gameParams = this.game.gameParameters;
     	let maxH = gameParams.maxHeight;
     	let maxW = gameParams.maxWidth;
-    	let nww = this.nww(maxW, maxH);
     	let window = this.window.nativeWindow;
     	let wH = window.innerHeight * 0.7;
     	let wW = window.innerWidth;
 
-    	this.canvasH = wH - (wH%nww);
-    	this.scale = Math.floor(this.canvasH/maxH);
-    	this.canvasW = this.scale * maxW;
-    }
-
-    nww(a, b) {
-    	let pom;
-    	let ab = a*b;
-
-    	while(a !== b) {
-    		if(a > b) { a -= b; }
-    		else 	  { b -= a; }
+    	let scale = Math.floor(wH/maxH);
+    	if((scale * maxW) > wW) {
+    		scale = Math.floor(wW/maxW);
     	}
-
-	    return ab/a;
+    	this.scale = scale;
+    	this.canvasH = scale*maxH;
+    	this.canvasW = scale*maxW;
     }
 
-    nwd(a, b) {
-    	let c;
-	    while(b != 0)
-	    {
-	        c = a % b;
-	        a = b;
-	        b = c;
-	    }
-	    return a; 
+    setPlayersColors() {
+    	let _this = this;
+    	_.each(this.game.players, function(player) {
+		    player.color = _this.getPlayerColor(player.id);
+	    });
     }
 
     getPlayerColor(playerId) {
@@ -170,10 +156,7 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
     		this.context.clearRect(0, 0, $('#canvasWrapper').width(), $('#canvasWrapper').height());
     		let players = _.without(this.game.players, this.player)
 	    	_.each(players, function(player) {
-	    		if(player.id !== _this.activePlayer){
-		    		player.color = _this.getPlayerColor(player.id);
-		    		_this.drawBlocks(player.blocks, player.color);
-		    	}
+		    	_this.drawBlocks(player.blocks, player.color);
 	    	});
 	    	this.drawBlocks(this.player.blocks, this.color);
 	    }
@@ -208,7 +191,6 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 			
 	    _this.canvas.onmousedown = function(e){
 	    	var elements = _this.player.blocks;
-
 			var box = new Box()
 	      	box.x = Math.round((e.x - $('#canvasWrapper').offset().left) / _this.scale);
 	      	box.y = Math.round((e.y - $('#canvasWrapper').offset().top) / _this.scale);

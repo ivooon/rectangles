@@ -48,3 +48,15 @@ html, body, .content {
 	padding: 15px;
 	border: 2px solid gray;
 }
+
+.center-container{
+	max-width: 600px;
+    min-width: 200px;
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 10%;
+}
+
+.next-game-btn{
+	margin-top: 20px;
+}

@@ -44,17 +44,19 @@ export class GameService {
       }
 
       for(let block of player.blocks){
-        let playerRect: RectDto = new RectDto(
-          block.x,
-          block.y,
-          block.width,
-          block.height
-        );
-        if(RectCalculationService.checkCollision(rect, playerRect)){
-          let intersectRect: RectDto = RectCalculationService.intersection(rect, playerRect);
-          var intersectionField: number = intersectRect.width * intersectRect.height;
-          totalCost -= intersectionField;
-          totalCost += intersectionField * costPerPlayer;
+        if(block.id){
+          let playerRect: RectDto = new RectDto(
+            block.x,
+            block.y,
+            block.width,
+            block.height
+          );
+          if(RectCalculationService.checkCollision(rect, playerRect)){
+            let intersectRect: RectDto = RectCalculationService.intersection(rect, playerRect);
+            var intersectionField: number = intersectRect.width * intersectRect.height;
+            totalCost -= intersectionField;
+            totalCost += intersectionField * costPerPlayer;
+          }
         }
       }
     }

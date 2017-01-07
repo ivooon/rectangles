@@ -1,4 +1,3 @@
-
 <div>
 	<div *ngIf="gameStatus === 'PENDING'">
 		<div> OCZEKIWANIE NA GRACZY</div>
@@ -7,29 +6,8 @@
 
 	<div *ngIf="gameStatus === 'STARTED'">
 		
-		<div class="score-table-wrapper"> 
-			<table *ngIf="game" class="score-table">
-				<thead>
-					<tr>
-						<th> PLAYER </th>
-						<th> MONEY </th>
-						<th> SCORE </th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr *ngFor="let player of game.players" [style.backgroundColor]="getPlayerColor(player.id)">
-						<td>
-							Player {{player.id}}
-						</td>
-						<td>
-							{{player.money}}
-						</td>
-						<td>
-							{{player.score}}
-						</td>
-					</tr>
-				</tbody>
-			</table>
+		<div *ngIf="game" class="score-table-wrapper"> 
+			<score-table [players]="game.players" [gameOver]="false"></score-table>
 		</div>
 		<div id="currentCost">{{cost}}</div>
 		<div id="canvasWrapper" [style.width.px]="canvasW" [style.height.px]="canvasH">
@@ -39,12 +17,14 @@
 	</div>
 
 	<div *ngIf="gameStatus === 'FINISHED'">
-		
-		<div>TABELA PODSUMOWUJACA</div>
-		<div> 
-			<button class="btn btn-primary" (click)="startGame()">NEXT GAME</button>
+		<div class="center-container">
+			<div>
+				<span *ngIf="isWinner"> YOU ARE THE WINNER!</span>
+				<span *ngIf="!isWinner"> YOU LOSE</span>
+			</div>
+			<score-table [players]="game.players" [gameOver]="true" [isWinner]="isWinner"></score-table>
+	
+			<button class="btn btn-primary next-game-btn" (click)="startGame()">NEXT GAME</button>
 		</div>
-		FINISHED
 	</div>
-
 </div>
