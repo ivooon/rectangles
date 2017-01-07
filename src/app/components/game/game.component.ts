@@ -31,10 +31,12 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 	canvasH = null;
 	scale = 1;
 	block;
-	colors = ['#6DD6DA', '#AE8CA3', '#817F82', '#A2ABB5', '#95D9DA'];
+	// colors = ['#6DD6DA', '#AE8CA3', '#817F82', '#A2ABB5', '#95D9DA'];
+	colors = ['#337BB7', '#FFCF3A', '#FFAC3A', '#4442C2'];
 	canvas = null;
 	context = null;
-	timeLeft = 10000;
+	timeLeft = 100;
+	elements = [];
 	isWinner = null;
 
 	@ViewChild(GameComponent) 
@@ -58,8 +60,6 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 				break;
 
 			case 'FINISHED':
-				let winnerId = _.max(this.game.players, function(player){ return player.score; }).id;
-				this.isWinner = winnerId === this.player.id;
 				break;
 
 			default:
@@ -78,7 +78,6 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 	}
 
 	onPlayerUpdate(player: Player): void {
-		this.player = player;
 		console.log('onPlayerUpdate', player)
 	}
 
@@ -96,6 +95,9 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 	endGame() {
 		this._InteractionFacadeImpl.stopGame();
 		this.gameStatus = 'FINISHED';
+		
+		let winnerId = _.max(this.game.players, function(player){ return player.score; }).id;
+		this.isWinner = winnerId === this.player.id;
 	}
 
 	timeCounter() {
@@ -159,6 +161,9 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 		    	_this.drawBlocks(player.blocks, player.color);
 	    	});
 	    	this.drawBlocks(this.player.blocks, this.color);
+	    	if(this.elements.length) {
+	    		this.drawBlocks(this.elements, this.color)
+	    	}
 	    }
     }
 
@@ -190,13 +195,12 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 	    _this.context    =  _this.canvas.getContext("2d");
 			
 	    _this.canvas.onmousedown = function(e){
-	    	var elements = _this.player.blocks;
 			var box = new Box()
 	      	box.x = Math.round((e.x - $('#canvasWrapper').offset().left) / _this.scale);
 	      	box.y = Math.round((e.y - $('#canvasWrapper').offset().top) / _this.scale);
 			box.width = 0;
 	      	box.height = 0;
-	      	elements.push(box)
+	      	_this.elements.push(box)
 
 			_this.canvas.onmousemove = function(e) {
 				let w = Math.round(e.x - $('#canvasWrapper').offset().left) - (box.x * _this.scale),
@@ -213,7 +217,7 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 
 		      		if (e.buttons == 0){
 			          	_this.canvas.onmousemove = _this.canvas.onmouseup = function(){};
-			          	elements.pop()
+			          	_this.elements.pop()
 			        }
 		      		_this.refreshView();
 	      		}
@@ -222,6 +226,7 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 	      	_this.canvas.onmouseup = function(e){
 	      		_this.createBlock(box);
 				_this.refreshView();
+				_this.elements = [];
 				_this.cost = 0;
 	      		_this.canvas.onmousemove = _this.canvas.onmouseup = function(){};
 	      	}
