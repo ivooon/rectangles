@@ -34,8 +34,10 @@
 				</div>
 				<score-table [players]="game.players" [gameOver]="true" [isWinner]="isWinner"></score-table>
 			</div>
-	
-			<button class="btn btn-primary next-game-btn" (click)="startGame()">NEXT GAME</button>
+			<div class="next-game">
+				<button class="btn btn-primary" (click)="startGame()">NEXT GAME</button>
+				<button (click)="_AuthService.logout()" class="btn btn-primary">LOGOUT</button>
+			</div>
 		</div>
 	</div>
 </div>

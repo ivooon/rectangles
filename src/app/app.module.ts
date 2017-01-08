@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { CookieService } from 'angular2-cookie/services/cookies.service';
+
 import { AppComponent } from './app.component';
 import { InitializatorComponent } from './components/index';
 import { AuthComponent } from './components/index';
@@ -30,7 +32,7 @@ import { secondsToTime } from './filters/secondsToTime.filter';
     FormsModule,
     HttpModule
   ],
-  providers: [InteractionFacadeImpl, AuthService, WindowService],
+  providers: [CookieService, InteractionFacadeImpl, AuthService, WindowService],
   bootstrap: [AppComponent, InitializatorComponent]
 })
 export class AppModule { }

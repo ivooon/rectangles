@@ -9,7 +9,7 @@
 	<tbody>
 		<tr *ngFor="let player of players" [style.backgroundColor]="player.color" [style.borderColor]="player.color">
 			<td>
-				Player {{player.id}}
+				{{player.userName}}
 			</td>
 			<td *ngIf="!gameOver">
 				{{player.money}}

@@ -1,5 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 
+import { CookieService } from 'angular2-cookie/core';
+
 import { InteractionFacadeImpl } from "./InteractionFacadeImpl";
 
 
@@ -7,15 +9,14 @@ import { InteractionFacadeImpl } from "./InteractionFacadeImpl";
 export class AuthService {
 	_InteractionFacadeImpl: InteractionFacadeImpl;
 	
-	constructor(@Inject(InteractionFacadeImpl) _InteractionFacadeImpl:InteractionFacadeImpl){
+	constructor(@Inject(InteractionFacadeImpl) _InteractionFacadeImpl:InteractionFacadeImpl,
+		private _cookieService:CookieService){
 		this._InteractionFacadeImpl = _InteractionFacadeImpl;
 	}
 
 	isAuth(): boolean {
-		let user = localStorage.getItem('currentUser');
-		if(user) {
+		if(this._cookieService.get('PHPSESSID')) {
 			return true;
-			//TODO renew session
 		}
 		return false;
 	}
@@ -24,8 +25,6 @@ export class AuthService {
 		return this._InteractionFacadeImpl.login(username, password)
             .then(
                 data => {
-                	console.log(data)
-                    localStorage.setItem('currentUser',  'costamostam');
                     return this.isAuth();
                 }
             )
@@ -35,15 +34,14 @@ export class AuthService {
 		return this._InteractionFacadeImpl.register(username, password)
             .then(
                 data => {
-                	console.log(data)
-                    localStorage.setItem('currentUser',  'costamostam');
+                    this.login(username, password);
                     return this.isAuth();
                 }
             )
 	}
 
 	logout(){
-		localStorage.removeItem('currentUser');
+		this._cookieService.remove('PHPSESSID');
     	this._InteractionFacadeImpl.stopGame();
 		return this.isAuth();
 	}

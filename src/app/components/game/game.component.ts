@@ -7,6 +7,7 @@ import { GameStatusListener } from '../../api/listener/GameStatusListener';
 import { MapUpdateListener } from '../../api/listener/MapUpdateListener';
 import { PlayerUpdateListener } from '../../api/listener/PlayerUpdateListener';
 
+import { AuthService } from '../../services/AuthService';
 import { WindowService } from '../../services/WindowService';
 
 import { ScoreTableComponent } from './scoreTable.component';
@@ -42,7 +43,7 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 	@ViewChild(GameComponent) 
 	private _GameComponent: GameComponent;
 
-	constructor(private _InteractionFacadeImpl:InteractionFacadeImpl, private window: WindowService) {}
+	constructor(private _InteractionFacadeImpl:InteractionFacadeImpl, private _AuthService:AuthService, private window: WindowService) {}
 
 	onGameStatusUpdate(gameStatus: String): void {
 		if(this.gameStatus === gameStatus) {
@@ -95,7 +96,7 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 	endGame() {
 		this._InteractionFacadeImpl.stopGame();
 		this.gameStatus = 'FINISHED';
-		
+
 		let winnerId = _.max(this.game.players, function(player){ return player.score; }).id;
 		this.isWinner = winnerId === this.player.id;
 	}
