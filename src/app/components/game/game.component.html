@@ -1,10 +1,15 @@
 <div>
 	<div *ngIf="gameStatus === 'PENDING'">
-		<div> OCZEKIWANIE NA GRACZY</div>
-		PENDING
+
+		<div class="center">
+			<div class="logo">
+		        <img src="/assets/img/logo.png">
+		    </div>
+		    <div> WAITING FOR PLAYERS... </div>
+		</div>
 	</div>
 
-	<div *ngIf="gameStatus === 'STARTED'">
+	<div *ngIf="gameStatus === 'STARTED'" [style.width.px]="canvasW" id="gameStarted">
 		
 		<div *ngIf="game" class="score-table-wrapper"> 
 			<score-table [players]="game.players" [gameOver]="false"></score-table>
@@ -13,16 +18,22 @@
 		<div id="canvasWrapper" [style.width.px]="canvasW" [style.height.px]="canvasH">
 			<canvas id="myCanvas" [attr.width]="canvasW" [attr.height]="canvasH" resize="false"></canvas>
 		</div>
+		<img id="game-logo" src="/assets/img/logo.png">
 		<div id="timer">{{ timeLeft | secondsToTime }}</div>
 	</div>
 
-	<div *ngIf="gameStatus === 'FINISHED'">
-		<div class="center-container">
-			<div>
-				<span *ngIf="isWinner"> YOU ARE THE WINNER!</span>
-				<span *ngIf="!isWinner"> YOU LOSE</span>
+	<div *ngIf="gameStatus === 'FINISHED'"  id="gameFinished">
+		<div class="center-container center">
+			<div class="logo">
+		        <img src="/assets/img/logo.png">
+		    </div>
+		    <div [style.width.px]="canvasW" id="resultsHolder">
+				<div id="game-result">
+					<span *ngIf="isWinner"> YOU ARE THE WINNER!</span>
+					<span *ngIf="!isWinner"> YOU LOSE</span>
+				</div>
+				<score-table [players]="game.players" [gameOver]="true" [isWinner]="isWinner"></score-table>
 			</div>
-			<score-table [players]="game.players" [gameOver]="true" [isWinner]="isWinner"></score-table>
 	
 			<button class="btn btn-primary next-game-btn" (click)="startGame()">NEXT GAME</button>
 		</div>

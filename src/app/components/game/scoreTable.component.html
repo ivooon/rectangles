@@ -7,7 +7,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr *ngFor="let player of players" [style.backgroundColor]="player.color">
+		<tr *ngFor="let player of players" [style.backgroundColor]="player.color" [style.borderColor]="player.color">
 			<td>
 				Player {{player.id}}
 			</td>
