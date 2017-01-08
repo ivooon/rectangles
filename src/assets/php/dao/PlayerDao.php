@@ -17,7 +17,14 @@ class PlayerDao
 
     public function findPlayersByGame($pdo, $gameId)
     {
-        $sql = "SELECT * FROM PLAYER WHERE PLAYER.GAME_ID = ?";
+        $sql = "SELECT 
+                  PLAYER.ID AS ID,
+                  PLAYER.MONEY AS MONEY,
+                  PLAYER.SCORE AS SCORE,
+                  USER.USER_NAME AS USER_NAME 
+                FROM PLAYER 
+                  LEFT JOIN USER ON PLAYER.USER_ID = USER.ID 
+                WHERE PLAYER.GAME_ID = ?";
         $stmt = $pdo->prepare($sql);
         $stmt->execute(array(
                 $gameId
