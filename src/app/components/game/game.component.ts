@@ -117,6 +117,7 @@ export class GameComponent implements GameStatusListener, MapUpdateListener, Pla
 	}
 
 	startGame():void {
+		this.elements = [];
      	this._InteractionFacadeImpl.startGame();
         this._InteractionFacadeImpl.addGameStatusListener(this);
         this._InteractionFacadeImpl.addMapUpdateListener(this);
